@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>DYNAN HOSTING STORE - Premium Hosting Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --accent: #F4E883;
+            --accent-dark: #EEE27D;
+            --accent-glow: rgba(244, 232, 131, 0.25);
+        }
+
+        body.dark {
+            --bg-primary: #0D0D09;
+            --bg-secondary: #1A1A14;
+            --bg-card: rgba(26, 26, 20, 0.95);
+            --text-primary: #FFFFFF;
+            --text-secondary: #C0C0B0;
+            --border: rgba(244, 232, 131, 0.2);
+            --glass-bg: rgba(26, 26, 20, 0.85);
+            --shadow: 0 8px 32px rgba(0,0,0,0.4);
+            --input-bg: #2A2A20;
+            --toast-bg: #1A1A14;
+        }
+
+        body.light {
+            --bg-primary: #F5F5F0;
+            --bg-secondary: #FFFFFF;
+            --bg-card: rgba(255,255,255,0.95);
+            --text-primary: #0D0D09;
+            --text-secondary: #5A5A4A;
+            --border: rgba(212, 160, 23, 0.2);
+            --glass-bg: rgba(255,255,255,0.9);
+            --shadow: 0 8px 32px rgba(0,0,0,0.1);
+            --input-bg: #FFFFFF;
+            --toast-bg: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Inter', 'Poppins', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+
+        /* Glassmorphism */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent);
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo h1 {
+            font-size: 1.6rem;
+            background: linear-gradient(135deg, var(--accent), #D4A017);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links button, .nav-btn {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        .nav-links button:hover, .nav-links button.active {
+            background: var(--accent);
+            color: #0D0D09;
+        }
+
+        .theme-toggle {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Button */
+        .btn-gold {
+            background: linear-gradient(135deg, var(--accent), #D4A017);
+            border: none;
+            color: #0D0D09;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-gold:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 5%;
+        }
+        .page {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .page.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        /* Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .product-card {
+            padding: 1rem;
+        }
+        .badge {
+            background: var(--accent);
+            color: #0D0D09;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        /* Form */
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            background: var(--input-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        label {
+            font-weight: 500;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--toast-bg);
+            border-left: 4px solid var(--accent);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            z-index: 2000;
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; }
+            .nav-links { justify-content: center; }
+            .container { padding: 1rem; }
+        }
+    </style>
+</head>
+<body class="dark">
+
+<div class="navbar">
+    <div class="logo" onclick="showPage('home')"><h1>✨ DYNAN HOSTING STORE</h1></div>
+    <div class="nav-links">
+        <button class="nav-btn" onclick="showPage('home')">🏠 Beranda</button>
+        <button class="nav-btn" onclick="showPage('products')">📦 Produk</button>
+        <button class="nav-btn" onclick="showPage('cart')">🛒 Keranjang</button>
+        <button class="nav-btn" onclick="showPage('orders')">📋 Pesanan Saya</button>
+        <button class="nav-btn" onclick="showPage('reviews')">⭐ Ulasan</button>
+        <button class="nav-btn" onclick="showPage('account')">👤 Akun</button>
+        <button class="nav-btn" onclick="showPage('payment')">💳 QRIS</button>
+        <button class="nav-btn" onclick="showPage('contact')">📞 Kontak</button>
+    </div>
+    <div style="display: flex; gap: 10px;">
+        <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+    </div>
+</div>
+
+<div class="container">
+    <!-- ==================== HOME ==================== -->
+    <div id="page-home" class="page active">
+        <div class="glass" style="padding: 3rem; text-align: center;">
+            <h2 style="font-size: 2.5rem;">✨ Selamat Datang di DYNAN HOSTING STORE</h2>
+            <p style="margin: 1rem 0; font-size: 1.2rem;">Exclusive Hosting Solutions for Elite Business</p>
+            <button class="btn-gold" onclick="window.open('https://maps.app.goo.gl/fr1AMLqnS6DnV1m69', '_blank')">
+                <i class="fas fa-map-marker-alt"></i> Lokasi Toko
+            </button>
+        </div>
+
+        <div style="margin-top: 2rem;">
+            <h3>⭐ Rating Website: <span id="avgRatingDisplay">0</span> / 5.0</h3>
+            <div id="recentComments" class="glass" style="padding: 1rem; margin-top: 1rem;"></div>
+        </div>
+
+        <div style="margin-top: 2rem;">
+            <h3>🔥 Produk Unggulan</h3>
+            <div id="featuredProducts" class="products-grid"></div>
+            <div id="emptyProductsMsg" style="display: none;" class="glass" style="padding: 3rem; text-align: center;">
+                <p>⚠️ Belum ada produk. Owner silakan tambah produk.</p>
+                <button class="btn-gold" onclick="showPage('manage-products')">+ Tambah Produk</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== PRODUK ==================== -->
+    <div id="page-products" class="page">
+        <h2>📦 Semua Produk</h2>
+        <div id="allProductsList" class="products-grid"></div>
+    </div>
+
+    <!-- ==================== KERANJANG ==================== -->
+    <div id="page-cart" class="page">
+        <h2>🛒 Keranjang Belanja</h2>
+        <div id="cartItems"></div>
+        <div id="checkoutBtn" style="margin-top: 1rem;"></div>
+    </div>
+
+    <!-- ==================== PESANAN SAYA ==================== -->
+    <div id="page-orders" class="page">
+        <h2>📋 Riwayat & Status Pesanan</h2>
+        <div id="ordersList"></div>
+    </div>
+
+    <!-- ==================== ULASAN ==================== -->
+    <div id="page-reviews" class="page">
+        <h2>⭐ Rating & Komentar</h2>
+        <div class="glass" style="padding: 1.5rem; margin-bottom: 2rem;">
+            <h3>Berikan Ulasan</h3>
+            <select id="ratingStars"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+            <textarea id="commentText" placeholder="Tulis komentar..." rows="3"></textarea>
+            <button class="btn-gold" onclick="submitReview()">Kirim Ulasan</button>
+        </div>
+        <div id="allReviews"></div>
+    </div>
+
+    <!-- ==================== AKUN ==================== -->
+    <div id="page-account" class="page">
+        <h2>👤 Akun</h2>
+        <div id="authSection"></div>
+        <div id="profileSection" style="display:none;"></div>
+        <div id="adminPanel" style="display:none; margin-top: 2rem;" class="glass" style="padding:1.5rem;"></div>
+    </div>
+
+    <!-- ==================== KELOLA PRODUK (KHUSUS OWNER) ==================== -->
+    <div id="page-manage-products" class="page">
+        <h2>📝 Kelola Produk (Owner Only)</h2>
+        <div class="glass" style="padding: 1.5rem;">
+            <h3>Tambah Produk</h3>
+            <input type="text" id="prodName" placeholder="Nama Produk">
+            <select id="prodType"><option>Hosting</option><option>Domain</option><option>SSL</option><option>Server</option><option>Lainnya</option></select>
+            <input type="number" id="prodPrice" placeholder="Harga (Rp)">
+            <textarea id="prodBenefits" placeholder="Benefits produk (contoh: ✅ Cepat, ✅ Support 24/7)"></textarea>
+            <button class="btn-gold" onclick="addProduct()">+ Tambah Produk</button>
+        </div>
+        <h3 style="margin-top: 2rem;">Daftar Produk</h3>
+        <div id="manageProductsList"></div>
+    </div>
+
+    <!-- ==================== PEMBAYARAN QRIS ==================== -->
+    <div id="page-payment" class="page">
+        <h2>💳 Pembayaran QRIS</h2>
+        <div class="glass" style="text-align: center; padding: 2rem;">
+            <img src="https://freeimage.host/i/C9S8XI9" alt="QRIS" style="max-width: 250px; border-radius: 20px;">
+            <p>Scan QRIS di atas untuk melakukan pembayaran</p>
+        </div>
+    </div>
+
+    <!-- ==================== KONTAK ==================== -->
+    <div id="page-contact" class="page">
+        <h2>📞 Hubungi Kami</h2>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+            <button class="btn-gold" onclick="window.open('https://wa.me/6283180072584', '_blank')"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+            <button class="btn-gold" onclick="window.open('https://instagram.com/nannhtgl', '_blank')"><i class="fab fa-instagram"></i> Instagram</button>
+            <button class="btn-gold" onclick="window.open('https://t.me/dynaniniwe', '_blank')"><i class="fab fa-telegram"></i> Telegram</button>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2025 DYNAN HOSTING STORE | Total Kunjungan: <span id="visitCount">0</span></p>
+</footer>
+
+<script>
+    // ========== KONFIGURASI ==========
+    const OWNER_USERNAME = "dynan";
+    const OWNER_PASSWORD = "257368419";
+    const MAPS_LINK = "https://maps.app.goo.gl/fr1AMLqnS6DnV1m69";
+    const WHATSAPP_NUMBER = "6283180072584";
+    const QRIS_IMAGE = "https://freeimage.host/i/C9S8XI9";
+
+    // ========== INISIALISASI DATA ==========
+    let products = JSON.parse(localStorage.getItem("products")) || [];
+    let users = JSON.parse(localStorage.getItem("users")) || [{ username: OWNER_USERNAME, password: OWNER_PASSWORD, role: "owner", email: "owner@dynan.com" }];
+    let carts = JSON.parse(localStorage.getItem("carts")) || {};
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+    let ratings = JSON.parse(localStorage.getItem("ratings")) || [];
+    let comments = JSON.parse(localStorage.getItem("comments")) || [];
+    let totalVisits = parseInt(localStorage.getItem("totalVisits")) || 0;
+    let currentUser = null;
+
+    // Update kunjungan
+    totalVisits++;
+    localStorage.setItem("totalVisits", totalVisits);
+    document.getElementById("visitCount").innerText = totalVisits;
+
+    function saveData() {
+        localStorage.setItem("products", JSON.stringify(products));
+        localStorage.setItem("users", JSON.stringify(users));
+        localStorage.setItem("carts", JSON.stringify(carts));
+        localStorage.setItem("orders", JSON.stringify(orders));
+        localStorage.setItem("ratings", JSON.stringify(ratings));
+        localStorage.setItem("comments", JSON.stringify(comments));
+    }
+
+    function showToast(msg) {
+        let toast = document.createElement("div");
+        toast.className = "toast";
+        toast.innerText = msg;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+    }
+
+    function showPage(pageId) {
+        document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+        document.getElementById(`page-${pageId}`).classList.add("active");
+        if (pageId === "home") renderHome();
+        if (pageId === "products") renderProducts();
+        if (pageId === "cart") renderCart();
+        if (pageId === "orders") renderOrders();
+        if (pageId === "reviews") renderReviews();
+        if (pageId === "account") renderAccount();
+        if (pageId === "manage-products") renderManageProducts();
+    }
+
+    function renderHome() {
+        let avg = ratings.length ? (ratings.reduce((a,b)=>a+b.stars,0)/ratings.length).toFixed(1) : 0;
+        document.getElementById("avgRatingDisplay").innerText = avg;
+        let recent = comments.slice(-3).map(c => `<div class="glass" style="margin:0.5rem 0; padding:0.8rem;"><b>⭐ ${c.stars}/5</b> - ${c.username}: ${c.text}</div>`).join("");
+        document.getElementById("recentComments").innerHTML = recent || "<p>Belum ada ulasan.</p>";
+        let featured = products.slice(0,3);
+        let grid = featured.map(p => `<div class="card product-card"><h3>${p.name}</h3><p>${p.type}</p><p>Rp ${p.price}</p><p>${p.benefits}</p><button class="btn-outline" onclick="addToCart(${p.id})">+ Keranjang</button></div>`).join("");
+        document.getElementById("featuredProducts").innerHTML = grid || "<p>Belum ada produk.</p>";
+    }
+
+    function renderProducts() {
+        let grid = products.map(p => `<div class="card product-card"><h3>${p.name}</h3><p>${p.type}</p><p>Rp ${p.price}</p><p>${p.benefits}</p><button class="btn-outline" onclick="addToCart(${p.id})">+ Keranjang</button></div>`).join("");
+        document.getElementById("allProductsList").innerHTML = grid || "<p class='glass' style='padding:2rem;'>Belum ada produk.</p>";
+    }
+
+    function addToCart(productId) {
+        if (!currentUser || currentUser.role !== "customer") {
+            showToast("Silakan login sebagai pelanggan terlebih dahulu.");
+            return;
+        }
+        if (!carts[currentUser.username]) carts[currentUser.username] = [];
+        carts[currentUser.username].push(productId);
+        saveData();
+        showToast("Produk ditambahkan ke keranjang!");
+    }
+
+    function renderCart() {
+        if (!currentUser || currentUser.role !== "customer") {
+            document.getElementById("cartItems").innerHTML = "<p>Silakan login untuk melihat keranjang.</p>";
+            document.getElementById("checkoutBtn").innerHTML = "";
+            return;
+        }
+        let cart = carts[currentUser.username] || [];
+        if (cart.length === 0) {
+            document.getElementById("cartItems").innerHTML = "<p>Keranjang kosong.</p>";
+            document.getElementById("checkoutBtn").innerHTML = "";
+            return;
+        }
+        let items = cart.map(pid => {
+            let p = products.find(pr => pr.id == pid);
+            return p ? `<div>${p.name} - Rp ${p.price}</div>` : "";
+        }).join("");
+        document.getElementById("cartItems").innerHTML = items;
+        document.getElementById("checkoutBtn").innerHTML = `<button class="btn-gold" onclick="checkout()">✅ Checkout & Kirim Konfirmasi</button>`;
+    }
+
+    function checkout() {
+        let cart = carts[currentUser.username] || [];
+        if (cart.length === 0) return;
+        let detail = cart.map(pid => {
+            let p = products.find(pr => pr.id == pid);
+            return `${p.name} - Rp ${p.price}`;
+        }).join("\n");
+        let total = cart.reduce((sum, pid) => {
+            let p = products.find(pr => pr.id == pid);
+            return sum + p.price;
+        }, 0);
+        let orderId = Date.now();
+        let newOrder = {
+            id: orderId,
+            username: currentUser.username,
+            items: cart,
+            total: total,
+            status: "Menunggu Konfirmasi",
+            date: new Date().toLocaleString()
+        };
+        orders.push(newOrder);
+        carts[currentUser.username] = [];
+        saveData();
+        let waMsg = `Halo Admin DYNAN, saya ingin konfirmasi pesanan:\n\nProduk:\n${detail}\nTotal: Rp ${total}\nTanggal: ${new Date().toLocaleString()}\n\nBukti transfer sudah saya lampirkan. Tolong segera diproses ya.`;
+        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMsg)}`, '_blank');
+        showToast("Pesanan dibuat! Silakan kirim bukti transfer via WhatsApp.");
+        renderCart();
+        renderOrders();
+        showPage("orders");
+    }
+
+    function renderOrders() {
+        if (!currentUser) {
+            document.getElementById("ordersList").innerHTML = "<p>Login untuk melihat pesanan.</p>";
+            return;
+        }
+        let userOrders = orders.filter(o => o.username === currentUser.username);
+        if (currentUser.role === "owner") userOrders = orders;
+        let list = userOrders.map(o => `<div class="card" style="margin-bottom:1rem; padding:1rem;"><b>Pesanan #${o.id}</b><br>Status: ${o.status}<br>Total: Rp ${o.total}<br>Tanggal: ${o.date}<br>${currentUser.role === "owner" ? `<button class="btn-outline" onclick="confirmOrder(${o.id})">✅ Konfirmasi Selesai</button>` : ""}</div>`).join("");
+        document.getElementById("ordersList").innerHTML = list || "<p>Belum ada pesanan.</p>";
+    }
+
+    function confirmOrder(orderId) {
+        let order = orders.find(o => o.id == orderId);
+        if (order) {
+            order.status = "Selesai";
+            saveData();
+            showToast("Pesanan dikonfirmasi selesai!");
+            renderOrders();
+        }
+    }
+
+    function submitReview() {
+        if (!currentUser || currentUser.role !== "customer") {
+            showToast("Silakan login sebagai pelanggan untuk memberi ulasan.");
+            return;
+        }
+        let stars = parseInt(document.getElementById("ratingStars").value);
+        let text = document.getElementById("commentText").value;
+        if (!text) return showToast("Tulis komentar dulu.");
+        ratings.push({ username: currentUser.username, stars: stars });
+        comments.push({ username: currentUser.username, stars: stars, text: text, date: new Date().toLocaleString() });
+        saveData();
+        showToast("Terima kasih atas ulasannya!");
+        renderReviews();
+    }
+
+    function renderReviews() {
+        let all = comments.map(c => `<div class="glass" style="margin:0.5rem 0; padding:0.8rem;"><b>⭐ ${c.stars}/5</b> - ${c.username}: ${c.text}<br><small>${c.date}</small></div>`).join("");
+        document.getElementById("allReviews").innerHTML = all || "<p>Belum ada ulasan.</p>";
+    }
+
+    function renderAccount() {
+        if (!currentUser) {
+            document.getElementById("authSection").innerHTML = `
+                <div class="glass" style="padding:1.5rem;"><h3>Login</h3><input id="loginUser" placeholder="Username"><input id="loginPass" type="password" placeholder="Password"><button class="btn-gold" onclick="login()">Login</button><hr><h3>Register</h3><input id="regUser" placeholder="Username"><input id="regPass" type="password" placeholder="Password"><input id="regEmail" placeholder="Email"><button class="btn-gold" onclick="register()">Daftar</button></div>`;
+            document.getElementById("profileSection").style.display = "none";
+            document.getElementById("adminPanel").style.display = "none";
+            return;
+        }
+        document.getElementById("authSection").innerHTML = "";
+        document.getElementById("profileSection").style.display = "block";
+        document.getElementById("profileSection").innerHTML = `<div class="glass" style="padding:1.5rem;"><h3>Profil: ${currentUser.username}</h3><p>Email: ${currentUser.email || "-"}</p><button class="btn-outline" onclick="logout()">Logout</button><br><br><input id="editUsername" placeholder="Username Baru"><input id="editPassword" placeholder="Password Baru"><input id="editEmail" placeholder="Email Baru"><button class="btn-gold" onclick="editProfile()">Simpan Perubahan</button></div>`;
+        if (currentUser.role === "owner") {
+            document.getElementById("adminPanel").style.display = "block";
+            document.getElementById("adminPanel").innerHTML = `<div class="glass" style="padding:1.5rem;"><h3>Panel Owner</h3><button class="btn-gold" onclick="showPage('manage-products')">📦 Kelola Produk</button><button class="btn-gold" onclick="showPage('orders')">📋 Semua Pesanan</button><button class="btn-outline" onclick="toggleWebsiteStatus()">🌐 Offline/Online</button><p>Total Kunjungan: ${totalVisits}</p></div>`;
+        } else {
+            document.getElementById("adminPanel").style.display = "none";
+        }
+    }
+
+    function login() {
+        let user = document.getElementById("loginUser").value;
+        let pass = document.getElementById("loginPass").value;
+        let found = users.find(u => u.username === user && u.password === pass);
+        if (found) {
+            currentUser = found;
+            saveData();
+            showToast(`Selamat datang, ${user}`);
+            renderAccount();
+            showPage("home");
+        } else showToast("Login gagal.");
+    }
+
+    function register() {
+        let user = document.getElementById("regUser").value;
+        let pass = document.getElementById("regPass").value;
+        let email = document.getElementById("regEmail").value;
+        if (users.find(u => u.username === user)) return showToast("Username sudah ada.");
+        if (user === OWNER_USERNAME) return showToast("Username tidak tersedia.");
+        users.push({ username: user, password: pass, email: email, role: "customer" });
+        saveData();
+        showToast("Registrasi berhasil! Silakan login.");
+        renderAccount();
+    }
+
+    function logout() {
+        currentUser = null;
+        renderAccount();
+        showPage("home");
+    }
+
+    function editProfile() {
+        let newU = document.getElementById("editUsername").value;
+        let newP = document.getElementById("editPassword").value;
+        let newE = document.getElementById("editEmail").value;
+        if (newU && newU !== OWNER_USERNAME) currentUser.username = newU;
+        if (newP) currentUser.password = newP;
+        if (newE) currentUser.email = newE;
+        let index = users.findIndex(u => u.username === currentUser.username);
+        if (index !== -1) users[index] = currentUser;
+        saveData();
+        showToast("Profil diperbarui!");
+        renderAccount();
+    }
+
+    function addProduct() {
+        if (!currentUser || currentUser.role !== "owner") return showToast("Hanya owner yang bisa menambah produk.");
+        let name = document.getElementById("prodName").value;
+        let type = document.getElementById("prodType").value;
+        let price = parseInt(document.getElementById("prodPrice").value);
+        let benefits = document.getElementById("prodBenefits").value;
+        if (!name || !price) return showToast("Nama dan harga wajib diisi.");
+        let id = Date.now();
+        products.push({ id, name, type, price, benefits });
+        saveData();
+        showToast("Produk ditambahkan!");
+        renderManageProducts();
+        renderProducts();
+        renderHome();
+    }
+
+    function renderManageProducts() {
+        let list = products.map(p => `<div class="card" style="margin-bottom:0.5rem; padding:0.8rem; display:flex; justify-content:space-between;"><div><b>${p.name}</b> - ${p.type} - Rp ${p.price}<br><small>${p.benefits}</small></div><div><button class="btn-outline" onclick="deleteProduct(${p.id})">Hapus</button></div></div>`).join("");
+        document.getElementById("manageProductsList").innerHTML = list || "<p>⚠️ PRODUK AWAL KOSONG - HANYA OWNER BISA MENAMBAH</p>";
+    }
+
+    function deleteProduct(id) {
+        if (!currentUser || currentUser.role !== "owner") return;
+        products = products.filter(p => p.id !== id);
+        saveData();
+        renderManageProducts();
+        renderProducts();
+        renderHome();
+    }
+
+    function toggleTheme() {
+        document.body.classList.toggle("dark");
+        document.body.classList.toggle("light");
+    }
+
+    // Init
+    renderHome();
+    renderProducts();
+    renderReviews();
+    renderAccount();
+    if (products.length === 0) document.getElementById("emptyProductsMsg").style.display = "block";
+</script>
+</body>
+</html>
