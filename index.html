@@ -259,6 +259,27 @@
             text-align: center;
         }
 
+        /* Password wrapper untuk icon mata */
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .password-wrapper input {
+            width: 100%;
+            padding-right: 48px;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--accent);
+            font-size: 1.2rem;
+            background: none;
+            border: none;
+        }
+
         .hero {
             text-align: center;
             padding: 2.5rem;
@@ -290,7 +311,7 @@
         .stock-badge { font-size: 0.7rem; padding: 4px 12px; border-radius: 20px; background: var(--border); display: inline-block; }
 
         /* Forms */
-        .form-group { margin-bottom: 1.3rem; }
+        .form-group { margin-bottom: 1.3rem; position: relative; }
         label { font-weight: 600; margin-bottom: 0.6rem; display: block; color: var(--accent); font-size: 0.9rem; }
         input, select, textarea {
             width: 100%;
@@ -438,6 +459,21 @@
         if (isError) toast.style.borderLeftColor = "#dc3545";
         document.body.appendChild(toast);
         setTimeout(() => toast.remove(), 3000);
+    }
+
+    // Fungsi toggle password
+    function togglePassword(inputId, iconId) {
+        let input = document.getElementById(inputId);
+        let icon = document.getElementById(iconId);
+        if (input.type === "password") {
+            input.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            input.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
     }
 
     function closeSidebar() {
@@ -700,7 +736,10 @@
                 <hr style="margin:1.2rem 0;">
                 <h4>Edit Profil</h4>
                 <input type="text" id="editUsername" placeholder="Username Baru" style="width:100%; margin-bottom:10px;">
-                <input type="password" id="editPassword" placeholder="Password Baru" style="width:100%; margin-bottom:10px;">
+                <div class="password-wrapper" style="margin-bottom:10px;">
+                    <input type="password" id="editPassword" placeholder="Password Baru">
+                    <button class="toggle-password" onclick="togglePassword('editPassword', 'editPasswordIcon')" type="button"><i class="fas fa-eye" id="editPasswordIcon"></i></button>
+                </div>
                 <input type="email" id="editEmail" placeholder="Email Baru" style="width:100%; margin-bottom:10px;">
                 <button class="btn-gold" onclick="editProfile()">Simpan Perubahan</button>
             </div>
@@ -724,7 +763,7 @@
         if (!user || !pass) { showToast("Isi username & password!", true); return; }
         let found = users.find(u => u.username === user && u.password === pass);
         if (found) { currentUser = found; showToast(`Selamat datang, ${user}! ✨`); renderApp(); }
-        else showToast("Login gagal!", true);
+        else showToast("Login gagal! Username/password salah.", true);
     }
 
     function register() {
@@ -861,13 +900,19 @@
                         <div style="margin-bottom:1.2rem;"><div class="logo-text" style="font-size:2.2rem;">DYNAN</div><div class="logo-sub">HOSTING STORE</div><div style="width:80px; height:2px; background:var(--accent); margin:1rem auto;"></div></div>
                         <h3 style="margin-bottom:1rem;">Welcome Back</h3>
                         <div class="form-group"><input type="text" id="loginUser" placeholder="Username"></div>
-                        <div class="form-group"><input type="password" id="loginPass" placeholder="Password"></div>
+                        <div class="form-group password-wrapper">
+                            <input type="password" id="loginPass" placeholder="Password">
+                            <button class="toggle-password" onclick="togglePassword('loginPass', 'loginPassIcon')" type="button"><i class="fas fa-eye" id="loginPassIcon"></i></button>
+                        </div>
                         <button class="btn-gold" onclick="login()" style="width:100%; justify-content:center;"><i class="fas fa-key"></i> Login</button>
                         <hr style="margin:1.2rem 0;">
                         <h4>Daftar Baru</h4>
                         <div class="form-group"><input type="text" id="regUser" placeholder="Username"></div>
-                        <div class="form-group"><input type="password" id="regPass" placeholder="Password"></div>
-                        <div class="form-group"><input type="email" id="regEmail" placeholder="Email"></div>
+                        <div class="form-group password-wrapper">
+                            <input type="password" id="regPass" placeholder="Password">
+                            <button class="toggle-password" onclick="togglePassword('regPass', 'regPassIcon')" type="button"><i class="fas fa-eye" id="regPassIcon"></i></button>
+                        </div>
+                        <div class="form-group"><input type="email" id="regEmail" placeholder="Email (opsional)"></div>
                         <button class="btn-outline" onclick="register()" style="width:100%;">Daftar</button>
                     </div>
                 </div>
@@ -953,6 +998,7 @@
     window.openSidebar = openSidebar;
     window.closeSidebar = closeSidebar;
     window.toggleTheme = toggleTheme;
+    window.togglePassword = togglePassword;
 
     renderApp();
 </script>
