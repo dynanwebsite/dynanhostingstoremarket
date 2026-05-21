@@ -14,10 +14,12 @@
 
         :root {
             --accent: #F4E883;
-            --accent-dark: #EEE27D;
+            --accent-dark: #D4A017;
             --accent-glow: rgba(244, 232, 131, 0.25);
+            --gold-gradient: linear-gradient(135deg, #F4E883, #D4A017);
         }
 
+        /* Dark Mode (Default) */
         body.dark {
             --bg-primary: #0D0D09;
             --bg-secondary: #1A1A14;
@@ -26,54 +28,107 @@
             --text-secondary: #C0C0B0;
             --border: rgba(244, 232, 131, 0.2);
             --glass-bg: rgba(26, 26, 20, 0.85);
+            --glass-border: rgba(244, 232, 131, 0.25);
             --shadow: 0 8px 32px rgba(0,0,0,0.4);
             --input-bg: #2A2A20;
             --toast-bg: #1A1A14;
+            --card-hover: rgba(244, 232, 131, 0.05);
         }
 
+        /* Light Mode */
         body.light {
-            --bg-primary: #F5F5F0;
+            --bg-primary: #F8F8F5;
             --bg-secondary: #FFFFFF;
             --bg-card: rgba(255,255,255,0.95);
             --text-primary: #0D0D09;
             --text-secondary: #5A5A4A;
             --border: rgba(212, 160, 23, 0.2);
             --glass-bg: rgba(255,255,255,0.9);
+            --glass-border: rgba(212, 160, 23, 0.3);
             --shadow: 0 8px 32px rgba(0,0,0,0.1);
             --input-bg: #FFFFFF;
             --toast-bg: #FFFFFF;
+            --card-hover: rgba(212, 160, 23, 0.05);
         }
 
         body {
-            font-family: 'Segoe UI', 'Inter', 'Poppins', sans-serif;
+            font-family: 'Inter', 'Segoe UI', 'Poppins', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             transition: all 0.3s ease;
+            min-height: 100vh;
         }
 
-        /* Scrollbar */
+        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); border-radius: 10px; }
         ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
 
-        /* Glassmorphism */
+        /* Glassmorphism Effect */
         .glass {
             background: var(--glass-bg);
             backdrop-filter: blur(12px);
-            border: 1px solid var(--border);
+            border: 1px solid var(--glass-border);
             border-radius: 24px;
         }
 
+        /* Card Style */
         .card {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 20px;
             transition: all 0.3s ease;
+            overflow: hidden;
         }
         .card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow);
             border-color: var(--accent);
+            background: var(--card-hover);
+        }
+
+        /* Button Styles */
+        .btn-gold {
+            background: var(--gold-gradient);
+            border: none;
+            color: #0D0D09;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-gold:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--accent);
+            color: var(--accent);
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-outline:hover {
+            background: var(--accent);
+            color: #0D0D09;
+        }
+
+        .btn-danger {
+            background: rgba(220, 53, 69, 0.9);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 12px;
+            cursor: pointer;
         }
 
         /* Navbar */
@@ -87,23 +142,31 @@
             z-index: 1000;
             background: var(--glass-bg);
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--glass-border);
             flex-wrap: wrap;
             gap: 1rem;
         }
 
+        .logo {
+            cursor: pointer;
+        }
         .logo h1 {
             font-size: 1.6rem;
-            background: linear-gradient(135deg, var(--accent), #D4A017);
+            background: var(--gold-gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+        .logo p {
+            font-size: 0.7rem;
+            color: var(--accent);
+            letter-spacing: 2px;
         }
 
         .nav-links {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.3rem;
             flex-wrap: wrap;
         }
 
@@ -113,9 +176,9 @@
             color: var(--text-primary);
             font-size: 0.9rem;
             cursor: pointer;
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.2rem;
             transition: all 0.3s;
-            border-radius: 12px;
+            border-radius: 40px;
             font-weight: 500;
         }
 
@@ -128,36 +191,17 @@
             background: var(--bg-secondary);
             border: 1px solid var(--border);
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        /* Button */
-        .btn-gold {
-            background: linear-gradient(135deg, var(--accent), #D4A017);
-            border: none;
-            color: #0D0D09;
-            padding: 10px 24px;
-            border-radius: 30px;
-            font-weight: bold;
-            cursor: pointer;
             transition: all 0.3s;
         }
-        .btn-gold:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-        .btn-outline {
-            background: transparent;
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            padding: 8px 20px;
-            border-radius: 30px;
-            cursor: pointer;
+        .theme-toggle:hover {
+            border-color: var(--accent);
+            transform: rotate(15deg);
         }
 
         /* Container */
@@ -165,7 +209,10 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 2rem 5%;
+            min-height: calc(100vh - 150px);
         }
+
+        /* Pages */
         .page {
             display: none;
             animation: fadeIn 0.4s ease;
@@ -174,57 +221,112 @@
             display: block;
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px);}
+            from { opacity: 0; transform: translateY(15px);}
             to { opacity: 1; transform: translateY(0);}
         }
 
-        /* Grid */
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+        }
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Products Grid */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
+            gap: 1.8rem;
             margin-top: 1.5rem;
         }
         .product-card {
-            padding: 1rem;
+            padding: 1.2rem;
+        }
+        .product-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin: 0.5rem 0;
+        }
+        .product-benefits {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin: 0.8rem 0;
+            line-height: 1.4;
         }
         .badge {
             background: var(--accent);
             color: #0D0D09;
-            padding: 4px 10px;
+            padding: 4px 12px;
             border-radius: 20px;
             font-size: 0.7rem;
             font-weight: bold;
+            display: inline-block;
         }
 
-        /* Form */
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            background: var(--input-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            color: var(--text-primary);
-            margin-bottom: 1rem;
+        /* Forms */
+        .form-group {
+            margin-bottom: 1.2rem;
         }
         label {
-            font-weight: 500;
-            margin-bottom: 5px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
             display: block;
+            color: var(--accent);
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--input-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
         }
 
-        /* Toast */
+        /* Cart & Order Items */
+        .cart-item, .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* Toast Notification */
         .toast {
             position: fixed;
             bottom: 30px;
             right: 30px;
             background: var(--toast-bg);
             border-left: 4px solid var(--accent);
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
+            padding: 1rem 1.8rem;
+            border-radius: 16px;
             box-shadow: var(--shadow);
             z-index: 2000;
             animation: slideIn 0.3s ease;
+            font-weight: 500;
         }
         @keyframes slideIn {
             from { transform: translateX(100%); opacity: 0; }
@@ -237,21 +339,46 @@
             padding: 2rem;
             border-top: 1px solid var(--border);
             margin-top: 3rem;
+            background: var(--glass-bg);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            background: var(--glass-bg);
+            border-radius: 24px;
+            border: 1px dashed var(--accent);
+        }
+        .empty-state i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .navbar { flex-direction: column; }
+            .navbar { flex-direction: column; text-align: center; }
             .nav-links { justify-content: center; }
             .container { padding: 1rem; }
+            .hero h2 { font-size: 1.8rem; }
+            .products-grid { grid-template-columns: 1fr; }
         }
+
+        /* Status Badge */
+        .status-waiting { background: #f0ad4e; color: #0D0D09; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; }
+        .status-success { background: #5cb85c; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; }
+        .status-process { background: #5bc0de; color: #0D0D09; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; }
     </style>
 </head>
 <body class="dark">
 
 <div class="navbar">
-    <div class="logo" onclick="showPage('home')"><h1>✨ DYNAN HOSTING STORE</h1></div>
-    <div class="nav-links">
+    <div class="logo" onclick="showPage('home')">
+        <h1>✨ DYNAN HOSTING STORE</h1>
+        <p>PREMIUM HOSTING SOLUTIONS</p>
+    </div>
+    <div class="nav-links" id="navLinks">
         <button class="nav-btn" onclick="showPage('home')">🏠 Beranda</button>
         <button class="nav-btn" onclick="showPage('products')">📦 Produk</button>
         <button class="nav-btn" onclick="showPage('cart')">🛒 Keranjang</button>
@@ -267,152 +394,201 @@
 </div>
 
 <div class="container">
-    <!-- ==================== HOME ==================== -->
+    <!-- ==================== HOME PAGE ==================== -->
     <div id="page-home" class="page active">
-        <div class="glass" style="padding: 3rem; text-align: center;">
-            <h2 style="font-size: 2.5rem;">✨ Selamat Datang di DYNAN HOSTING STORE</h2>
-            <p style="margin: 1rem 0; font-size: 1.2rem;">Exclusive Hosting Solutions for Elite Business</p>
+        <div class="hero glass">
+            <h2>✨ Selamat Datang di DYNAN HOSTING STORE</h2>
+            <p>Exclusive Hosting Solutions for Elite Business</p>
             <button class="btn-gold" onclick="window.open('https://maps.app.goo.gl/fr1AMLqnS6DnV1m69', '_blank')">
                 <i class="fas fa-map-marker-alt"></i> Lokasi Toko
             </button>
         </div>
 
-        <div style="margin-top: 2rem;">
+        <div class="glass" style="padding: 1.5rem; margin-bottom: 2rem; text-align: center;">
             <h3>⭐ Rating Website: <span id="avgRatingDisplay">0</span> / 5.0</h3>
-            <div id="recentComments" class="glass" style="padding: 1rem; margin-top: 1rem;"></div>
+            <div id="recentComments" style="margin-top: 1rem;"></div>
         </div>
 
-        <div style="margin-top: 2rem;">
+        <div>
             <h3>🔥 Produk Unggulan</h3>
             <div id="featuredProducts" class="products-grid"></div>
-            <div id="emptyProductsMsg" style="display: none;" class="glass" style="padding: 3rem; text-align: center;">
+            <div id="emptyProductsMsg" class="empty-state" style="display: none; margin-top: 1rem;">
+                <i class="fas fa-box-open"></i>
                 <p>⚠️ Belum ada produk. Owner silakan tambah produk.</p>
                 <button class="btn-gold" onclick="showPage('manage-products')">+ Tambah Produk</button>
             </div>
         </div>
     </div>
 
-    <!-- ==================== PRODUK ==================== -->
+    <!-- ==================== PRODUCTS PAGE ==================== -->
     <div id="page-products" class="page">
         <h2>📦 Semua Produk</h2>
         <div id="allProductsList" class="products-grid"></div>
     </div>
 
-    <!-- ==================== KERANJANG ==================== -->
+    <!-- ==================== CART PAGE ==================== -->
     <div id="page-cart" class="page">
         <h2>🛒 Keranjang Belanja</h2>
-        <div id="cartItems"></div>
-        <div id="checkoutBtn" style="margin-top: 1rem;"></div>
+        <div id="cartItems" class="glass" style="padding: 1rem;"></div>
+        <div id="checkoutBtn" style="margin-top: 1.5rem; text-align: right;"></div>
     </div>
 
-    <!-- ==================== PESANAN SAYA ==================== -->
+    <!-- ==================== ORDERS PAGE ==================== -->
     <div id="page-orders" class="page">
-        <h2>📋 Riwayat & Status Pesanan</h2>
+        <h2>📋 Riwayat Pesanan</h2>
         <div id="ordersList"></div>
     </div>
 
-    <!-- ==================== ULASAN ==================== -->
+    <!-- ==================== REVIEWS PAGE ==================== -->
     <div id="page-reviews" class="page">
         <h2>⭐ Rating & Komentar</h2>
         <div class="glass" style="padding: 1.5rem; margin-bottom: 2rem;">
             <h3>Berikan Ulasan</h3>
-            <select id="ratingStars"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
-            <textarea id="commentText" placeholder="Tulis komentar..." rows="3"></textarea>
-            <button class="btn-gold" onclick="submitReview()">Kirim Ulasan</button>
+            <div class="form-group">
+                <label>Rating Bintang</label>
+                <select id="ratingStars" class="form-control">
+                    <option value="5">⭐⭐⭐⭐⭐ (5)</option>
+                    <option value="4">⭐⭐⭐⭐ (4)</option>
+                    <option value="3">⭐⭐⭐ (3)</option>
+                    <option value="2">⭐⭐ (2)</option>
+                    <option value="1">⭐ (1)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Komentar</label>
+                <textarea id="commentText" placeholder="Tulis komentar Anda..." rows="3"></textarea>
+            </div>
+            <button class="btn-gold" onclick="submitReview()"><i class="fas fa-paper-plane"></i> Kirim Ulasan</button>
         </div>
         <div id="allReviews"></div>
     </div>
 
-    <!-- ==================== AKUN ==================== -->
+    <!-- ==================== ACCOUNT PAGE ==================== -->
     <div id="page-account" class="page">
-        <h2>👤 Akun</h2>
+        <h2>👤 Akun Saya</h2>
         <div id="authSection"></div>
         <div id="profileSection" style="display:none;"></div>
-        <div id="adminPanel" style="display:none; margin-top: 2rem;" class="glass" style="padding:1.5rem;"></div>
+        <div id="adminPanel" style="display:none; margin-top: 2rem;"></div>
     </div>
 
-    <!-- ==================== KELOLA PRODUK (KHUSUS OWNER) ==================== -->
+    <!-- ==================== MANAGE PRODUCTS (OWNER ONLY) ==================== -->
     <div id="page-manage-products" class="page">
-        <h2>📝 Kelola Produk (Owner Only)</h2>
-        <div class="glass" style="padding: 1.5rem;">
-            <h3>Tambah Produk</h3>
-            <input type="text" id="prodName" placeholder="Nama Produk">
-            <select id="prodType"><option>Hosting</option><option>Domain</option><option>SSL</option><option>Server</option><option>Lainnya</option></select>
-            <input type="number" id="prodPrice" placeholder="Harga (Rp)">
-            <textarea id="prodBenefits" placeholder="Benefits produk (contoh: ✅ Cepat, ✅ Support 24/7)"></textarea>
-            <button class="btn-gold" onclick="addProduct()">+ Tambah Produk</button>
+        <h2>📝 Kelola Produk <span style="font-size: 0.8rem;">(Owner Only)</span></h2>
+        <div class="glass" style="padding: 1.5rem; margin-bottom: 2rem;">
+            <h3><i class="fas fa-plus-circle"></i> Tambah Produk Baru</h3>
+            <div class="form-group">
+                <label>Nama Produk</label>
+                <input type="text" id="prodName" placeholder="Contoh: Hosting Premium 10GB">
+            </div>
+            <div class="form-group">
+                <label>Jenis Produk</label>
+                <select id="prodType">
+                    <option value="Hosting">Hosting</option>
+                    <option value="Domain">Domain</option>
+                    <option value="SSL">SSL Certificate</option>
+                    <option value="Server">Dedicated Server</option>
+                    <option value="Lainnya">Lainnya</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Harga (Rp)</label>
+                <input type="number" id="prodPrice" placeholder="Contoh: 149000">
+            </div>
+            <div class="form-group">
+                <label>Benefits / Keuntungan</label>
+                <textarea id="prodBenefits" rows="3" placeholder="Contoh: ✅ SSD Cepat, ✅ Support 24/7, ✅ Free Domain"></textarea>
+            </div>
+            <button class="btn-gold" onclick="addProduct()"><i class="fas fa-save"></i> Simpan Produk</button>
         </div>
-        <h3 style="margin-top: 2rem;">Daftar Produk</h3>
+        <h3>📋 Daftar Produk</h3>
         <div id="manageProductsList"></div>
     </div>
 
-    <!-- ==================== PEMBAYARAN QRIS ==================== -->
+    <!-- ==================== PAYMENT PAGE ==================== -->
     <div id="page-payment" class="page">
         <h2>💳 Pembayaran QRIS</h2>
-        <div class="glass" style="text-align: center; padding: 2rem;">
-            <img src="https://freeimage.host/i/C9S8XI9" alt="QRIS" style="max-width: 250px; border-radius: 20px;">
-            <p>Scan QRIS di atas untuk melakukan pembayaran</p>
+        <div class="glass" style="text-align: center; padding: 2.5rem;">
+            <img src="https://freeimage.host/i/C9S8XI9" alt="QRIS Code" style="max-width: 280px; border-radius: 24px; box-shadow: var(--shadow);">
+            <p style="margin-top: 1.5rem;"><i class="fas fa-qrcode"></i> Scan QRIS di atas untuk melakukan pembayaran</p>
+            <p style="font-size: 0.8rem; color: var(--text-secondary);">Setelah pembayaran, konfirmasi melalui WhatsApp</p>
         </div>
     </div>
 
-    <!-- ==================== KONTAK ==================== -->
+    <!-- ==================== CONTACT PAGE ==================== -->
     <div id="page-contact" class="page">
         <h2>📞 Hubungi Kami</h2>
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
-            <button class="btn-gold" onclick="window.open('https://wa.me/6283180072584', '_blank')"><i class="fab fa-whatsapp"></i> WhatsApp</button>
-            <button class="btn-gold" onclick="window.open('https://instagram.com/nannhtgl', '_blank')"><i class="fab fa-instagram"></i> Instagram</button>
-            <button class="btn-gold" onclick="window.open('https://t.me/dynaniniwe', '_blank')"><i class="fab fa-telegram"></i> Telegram</button>
+        <div class="glass" style="padding: 2rem; text-align: center;">
+            <div style="display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center;">
+                <button class="btn-gold" onclick="window.open('https://wa.me/6283180072584', '_blank')"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                <button class="btn-gold" onclick="window.open('https://instagram.com/nannhtgl', '_blank')"><i class="fab fa-instagram"></i> Instagram</button>
+                <button class="btn-gold" onclick="window.open('https://t.me/dynaniniwe', '_blank')"><i class="fab fa-telegram"></i> Telegram</button>
+            </div>
+            <hr style="margin: 1.5rem 0; border-color: var(--border);">
+            <p><i class="fas fa-map-marker-alt"></i> <strong>Alamat Toko:</strong></p>
+            <button class="btn-outline" onclick="window.open('https://maps.app.goo.gl/fr1AMLqnS6DnV1m69', '_blank')">Klik untuk lihat di Google Maps</button>
         </div>
     </div>
 </div>
 
 <footer>
-    <p>© 2025 DYNAN HOSTING STORE | Total Kunjungan: <span id="visitCount">0</span></p>
+    <p>© 2025 DYNAN HOSTING STORE | <i class="fas fa-chart-line"></i> Total Kunjungan: <span id="visitCount">0</span></p>
 </footer>
 
 <script>
-    // ========== KONFIGURASI ==========
+    // ==================== KONFIGURASI ====================
     const OWNER_USERNAME = "dynan";
     const OWNER_PASSWORD = "257368419";
-    const MAPS_LINK = "https://maps.app.goo.gl/fr1AMLqnS6DnV1m69";
     const WHATSAPP_NUMBER = "6283180072584";
-    const QRIS_IMAGE = "https://freeimage.host/i/C9S8XI9";
 
-    // ========== INISIALISASI DATA ==========
-    let products = JSON.parse(localStorage.getItem("products")) || [];
-    let users = JSON.parse(localStorage.getItem("users")) || [{ username: OWNER_USERNAME, password: OWNER_PASSWORD, role: "owner", email: "owner@dynan.com" }];
-    let carts = JSON.parse(localStorage.getItem("carts")) || {};
-    let orders = JSON.parse(localStorage.getItem("orders")) || [];
-    let ratings = JSON.parse(localStorage.getItem("ratings")) || [];
-    let comments = JSON.parse(localStorage.getItem("comments")) || [];
-    let totalVisits = parseInt(localStorage.getItem("totalVisits")) || 0;
-    let currentUser = null;
+    // ==================== INISIALISASI DATA (FILE JSON SIMULASI) ====================
+    // Data tersimpan dalam file terpisah di localStorage
+    let products = JSON.parse(localStorage.getItem("products_json")) || [];
+    let users = JSON.parse(localStorage.getItem("users_json")) || [{ username: OWNER_USERNAME, password: OWNER_PASSWORD, role: "owner", email: "owner@dynan.com", createdAt: new Date().toISOString() }];
+    let carts = JSON.parse(localStorage.getItem("carts_json")) || {};
+    let orders = JSON.parse(localStorage.getItem("orders_json")) || [];
+    let ratings = JSON.parse(localStorage.getItem("ratings_json")) || [];
+    let comments = JSON.parse(localStorage.getItem("comments_json")) || [];
+    let totalVisits = parseInt(localStorage.getItem("totalVisits_json")) || 0;
+    let websiteStatus = JSON.parse(localStorage.getItem("websiteStatus_json")) || { status: "online" };
 
-    // Update kunjungan
+    // Update total kunjungan
     totalVisits++;
-    localStorage.setItem("totalVisits", totalVisits);
+    localStorage.setItem("totalVisits_json", totalVisits);
     document.getElementById("visitCount").innerText = totalVisits;
 
-    function saveData() {
-        localStorage.setItem("products", JSON.stringify(products));
-        localStorage.setItem("users", JSON.stringify(users));
-        localStorage.setItem("carts", JSON.stringify(carts));
-        localStorage.setItem("orders", JSON.stringify(orders));
-        localStorage.setItem("ratings", JSON.stringify(ratings));
-        localStorage.setItem("comments", JSON.stringify(comments));
+    let currentUser = null;
+
+    // Function save all data ke file masing-masing
+    function saveAllData() {
+        localStorage.setItem("products_json", JSON.stringify(products));
+        localStorage.setItem("users_json", JSON.stringify(users));
+        localStorage.setItem("carts_json", JSON.stringify(carts));
+        localStorage.setItem("orders_json", JSON.stringify(orders));
+        localStorage.setItem("ratings_json", JSON.stringify(ratings));
+        localStorage.setItem("comments_json", JSON.stringify(comments));
+        localStorage.setItem("websiteStatus_json", JSON.stringify(websiteStatus));
     }
 
-    function showToast(msg) {
+    function showToast(msg, isError = false) {
         let toast = document.createElement("div");
         toast.className = "toast";
-        toast.innerText = msg;
+        toast.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-check-circle'}"></i> ${msg}`;
+        if (isError) toast.style.borderLeftColor = "#dc3545";
         document.body.appendChild(toast);
         setTimeout(() => toast.remove(), 3000);
     }
 
     function showPage(pageId) {
+        if (websiteStatus.status === "offline" && currentUser?.role !== "owner") {
+            showToast("⚠️ Website sedang offline. Hanya owner yang bisa mengakses.", true);
+            return;
+        }
         document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
         document.getElementById(`page-${pageId}`).classList.add("active");
+        
+        // Update active nav
+        document.querySelectorAll(".nav-btn").forEach(btn => btn.classList.remove("active"));
+        
         if (pageId === "home") renderHome();
         if (pageId === "products") renderProducts();
         if (pageId === "cart") renderCart();
@@ -424,75 +600,116 @@
 
     function renderHome() {
         let avg = ratings.length ? (ratings.reduce((a,b)=>a+b.stars,0)/ratings.length).toFixed(1) : 0;
-        document.getElementById("avgRatingDisplay").innerText = avg;
-        let recent = comments.slice(-3).map(c => `<div class="glass" style="margin:0.5rem 0; padding:0.8rem;"><b>⭐ ${c.stars}/5</b> - ${c.username}: ${c.text}</div>`).join("");
-        document.getElementById("recentComments").innerHTML = recent || "<p>Belum ada ulasan.</p>";
+        document.getElementById("avgRatingDisplay").innerHTML = `<i class="fas fa-star" style="color: var(--accent);"></i> ${avg}`;
+        
+        let recent = comments.slice(-3).map(c => `<div style="margin:0.5rem 0; padding:0.5rem; border-left: 3px solid var(--accent);"><b>⭐ ${c.stars}/5</b> - <i>${c.username}</i>: ${c.text}</div>`).join("");
+        document.getElementById("recentComments").innerHTML = recent || "<p>Belum ada ulasan. Jadi yang pertama!</p>";
+        
         let featured = products.slice(0,3);
-        let grid = featured.map(p => `<div class="card product-card"><h3>${p.name}</h3><p>${p.type}</p><p>Rp ${p.price}</p><p>${p.benefits}</p><button class="btn-outline" onclick="addToCart(${p.id})">+ Keranjang</button></div>`).join("");
-        document.getElementById("featuredProducts").innerHTML = grid || "<p>Belum ada produk.</p>";
+        let grid = featured.map(p => `
+            <div class="card product-card">
+                <span class="badge">${p.type}</span>
+                <h3>${p.name}</h3>
+                <div class="product-price">Rp ${p.price.toLocaleString()}</div>
+                <div class="product-benefits">${p.benefits.substring(0, 80)}${p.benefits.length > 80 ? '...' : ''}</div>
+                <button class="btn-outline" style="width:100%;" onclick="addToCart(${p.id})"><i class="fas fa-cart-plus"></i> Tambah ke Keranjang</button>
+            </div>
+        `).join("");
+        document.getElementById("featuredProducts").innerHTML = grid || "<p style='text-align:center;'>Belum ada produk.</p>";
+        
+        if (products.length === 0) {
+            document.getElementById("emptyProductsMsg").style.display = "block";
+        } else {
+            document.getElementById("emptyProductsMsg").style.display = "none";
+        }
     }
 
     function renderProducts() {
-        let grid = products.map(p => `<div class="card product-card"><h3>${p.name}</h3><p>${p.type}</p><p>Rp ${p.price}</p><p>${p.benefits}</p><button class="btn-outline" onclick="addToCart(${p.id})">+ Keranjang</button></div>`).join("");
-        document.getElementById("allProductsList").innerHTML = grid || "<p class='glass' style='padding:2rem;'>Belum ada produk.</p>";
+        let grid = products.map(p => `
+            <div class="card product-card">
+                <span class="badge">${p.type}</span>
+                <h3>${p.name}</h3>
+                <div class="product-price">Rp ${p.price.toLocaleString()}</div>
+                <div class="product-benefits">${p.benefits}</div>
+                <button class="btn-outline" style="width:100%;" onclick="addToCart(${p.id})"><i class="fas fa-cart-plus"></i> Tambah ke Keranjang</button>
+            </div>
+        `).join("");
+        document.getElementById("allProductsList").innerHTML = grid || `<div class="empty-state"><i class="fas fa-box-open"></i><p>Belum ada produk. Owner silakan tambah produk.</p></div>`;
     }
 
     function addToCart(productId) {
-        if (!currentUser || currentUser.role !== "customer") {
-            showToast("Silakan login sebagai pelanggan terlebih dahulu.");
+        if (!currentUser) {
+            showToast("Silakan login terlebih dahulu!", true);
+            showPage("account");
+            return;
+        }
+        if (currentUser.role !== "customer") {
+            showToast("Hanya pelanggan yang bisa belanja!", true);
             return;
         }
         if (!carts[currentUser.username]) carts[currentUser.username] = [];
         carts[currentUser.username].push(productId);
-        saveData();
-        showToast("Produk ditambahkan ke keranjang!");
+        saveAllData();
+        showToast("✅ Produk ditambahkan ke keranjang!");
+        renderCart();
     }
 
     function renderCart() {
         if (!currentUser || currentUser.role !== "customer") {
-            document.getElementById("cartItems").innerHTML = "<p>Silakan login untuk melihat keranjang.</p>";
+            document.getElementById("cartItems").innerHTML = `<div class="empty-state"><i class="fas fa-lock"></i><p>Silakan login sebagai pelanggan untuk melihat keranjang.</p></div>`;
             document.getElementById("checkoutBtn").innerHTML = "";
             return;
         }
         let cart = carts[currentUser.username] || [];
         if (cart.length === 0) {
-            document.getElementById("cartItems").innerHTML = "<p>Keranjang kosong.</p>";
+            document.getElementById("cartItems").innerHTML = `<div class="empty-state"><i class="fas fa-shopping-cart"></i><p>Keranjang kosong. Yuk belanja dulu!</p></div>`;
             document.getElementById("checkoutBtn").innerHTML = "";
             return;
         }
-        let items = cart.map(pid => {
+        
+        let itemsHtml = "";
+        let total = 0;
+        cart.forEach(pid => {
             let p = products.find(pr => pr.id == pid);
-            return p ? `<div>${p.name} - Rp ${p.price}</div>` : "";
-        }).join("");
-        document.getElementById("cartItems").innerHTML = items;
-        document.getElementById("checkoutBtn").innerHTML = `<button class="btn-gold" onclick="checkout()">✅ Checkout & Kirim Konfirmasi</button>`;
+            if (p) {
+                itemsHtml += `<div class="cart-item"><span><b>${p.name}</b> - ${p.type}</span><span>Rp ${p.price.toLocaleString()}</span></div>`;
+                total += p.price;
+            }
+        });
+        itemsHtml += `<div class="cart-item" style="font-weight: bold; border-top: 2px solid var(--accent);"><span>Total</span><span>Rp ${total.toLocaleString()}</span></div>`;
+        document.getElementById("cartItems").innerHTML = itemsHtml;
+        document.getElementById("checkoutBtn").innerHTML = `<button class="btn-gold" onclick="checkout(${total})"><i class="fas fa-credit-card"></i> Checkout & Konfirmasi via WA</button>`;
     }
 
-    function checkout() {
+    function checkout(total) {
         let cart = carts[currentUser.username] || [];
         if (cart.length === 0) return;
-        let detail = cart.map(pid => {
+        
+        let items = cart.map(pid => {
             let p = products.find(pr => pr.id == pid);
-            return `${p.name} - Rp ${p.price}`;
+            return `${p.name} - Rp ${p.price.toLocaleString()}`;
         }).join("\n");
-        let total = cart.reduce((sum, pid) => {
-            let p = products.find(pr => pr.id == pid);
-            return sum + p.price;
-        }, 0);
+        
         let orderId = Date.now();
-        let newOrder = {
+        let order = {
             id: orderId,
             username: currentUser.username,
-            items: cart,
+            items: cart.map(pid => {
+                let p = products.find(pr => pr.id == pid);
+                return { id: p.id, name: p.name, price: p.price, type: p.type };
+            }),
             total: total,
             status: "Menunggu Konfirmasi",
-            date: new Date().toLocaleString()
+            date: new Date().toLocaleString('id-ID'),
+            dateISO: new Date().toISOString()
         };
-        orders.push(newOrder);
+        orders.push(order);
         carts[currentUser.username] = [];
-        saveData();
-        let waMsg = `Halo Admin DYNAN, saya ingin konfirmasi pesanan:\n\nProduk:\n${detail}\nTotal: Rp ${total}\nTanggal: ${new Date().toLocaleString()}\n\nBukti transfer sudah saya lampirkan. Tolong segera diproses ya.`;
+        saveAllData();
+        
+        let waMsg = `*KONFIRMASI PEMBAYARAN DYNAN HOSTING STORE*\n\nHalo Admin, saya sudah melakukan pembayaran.\n\nDetail Pesanan:\n${items}\n\nTotal: Rp ${total.toLocaleString()}\nTanggal: ${new Date().toLocaleString('id-ID')}\n\n*Bukti transfer terlampir.*\n\nMohon segera diproses. Terima kasih.`;
         window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMsg)}`, '_blank');
+        
         showToast("Pesanan dibuat! Silakan kirim bukti transfer via WhatsApp.");
         renderCart();
         renderOrders();
@@ -501,145 +718,312 @@
 
     function renderOrders() {
         if (!currentUser) {
-            document.getElementById("ordersList").innerHTML = "<p>Login untuk melihat pesanan.</p>";
+            document.getElementById("ordersList").innerHTML = `<div class="empty-state"><i class="fas fa-lock"></i><p>Login untuk melihat pesanan.</p></div>`;
             return;
         }
-        let userOrders = orders.filter(o => o.username === currentUser.username);
-        if (currentUser.role === "owner") userOrders = orders;
-        let list = userOrders.map(o => `<div class="card" style="margin-bottom:1rem; padding:1rem;"><b>Pesanan #${o.id}</b><br>Status: ${o.status}<br>Total: Rp ${o.total}<br>Tanggal: ${o.date}<br>${currentUser.role === "owner" ? `<button class="btn-outline" onclick="confirmOrder(${o.id})">✅ Konfirmasi Selesai</button>` : ""}</div>`).join("");
-        document.getElementById("ordersList").innerHTML = list || "<p>Belum ada pesanan.</p>";
+        
+        let userOrders = currentUser.role === "owner" ? orders : orders.filter(o => o.username === currentUser.username);
+        
+        if (userOrders.length === 0) {
+            document.getElementById("ordersList").innerHTML = `<div class="empty-state"><i class="fas fa-receipt"></i><p>Belum ada pesanan.</p></div>`;
+            return;
+        }
+        
+        let list = userOrders.map(o => `
+            <div class="card" style="margin-bottom:1rem; padding:1.2rem;">
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                    <div><b>Pesanan #${o.id}</b><br><small>${o.date}</small></div>
+                    <div><span class="status-${o.status === 'Selesai' ? 'success' : 'waiting'}">${o.status}</span></div>
+                </div>
+                <hr style="margin: 0.8rem 0; border-color: var(--border);">
+                <div>${o.items.map(i => `📦 ${i.name} - Rp ${i.price.toLocaleString()}`).join('<br>')}</div>
+                <div style="margin-top: 0.8rem; font-weight: bold;">Total: Rp ${o.total.toLocaleString()}</div>
+                ${currentUser.role === "owner" && o.status === "Menunggu Konfirmasi" ? `<button class="btn-outline" style="margin-top: 0.8rem;" onclick="confirmOrder(${o.id})"><i class="fas fa-check-circle"></i> Konfirmasi Selesai</button>` : ""}
+                ${o.status === "Selesai" ? `<div style="margin-top: 0.5rem; color: var(--accent);"><i class="fas fa-check"></i> Pesanan telah selesai</div>` : ""}
+            </div>
+        `).join("");
+        document.getElementById("ordersList").innerHTML = list;
     }
 
     function confirmOrder(orderId) {
         let order = orders.find(o => o.id == orderId);
         if (order) {
             order.status = "Selesai";
-            saveData();
-            showToast("Pesanan dikonfirmasi selesai!");
+            saveAllData();
+            showToast("✅ Pesanan dikonfirmasi selesai!");
             renderOrders();
         }
     }
 
     function submitReview() {
         if (!currentUser || currentUser.role !== "customer") {
-            showToast("Silakan login sebagai pelanggan untuk memberi ulasan.");
+            showToast("Silakan login sebagai pelanggan untuk memberi ulasan.", true);
+            showPage("account");
             return;
         }
         let stars = parseInt(document.getElementById("ratingStars").value);
-        let text = document.getElementById("commentText").value;
-        if (!text) return showToast("Tulis komentar dulu.");
-        ratings.push({ username: currentUser.username, stars: stars });
-        comments.push({ username: currentUser.username, stars: stars, text: text, date: new Date().toLocaleString() });
-        saveData();
-        showToast("Terima kasih atas ulasannya!");
+        let text = document.getElementById("commentText").value.trim();
+        if (!text) {
+            showToast("Tulis komentar terlebih dahulu!", true);
+            return;
+        }
+        ratings.push({ username: currentUser.username, stars: stars, date: new Date().toISOString() });
+        comments.push({ username: currentUser.username, stars: stars, text: text, date: new Date().toLocaleString('id-ID') });
+        saveAllData();
+        showToast("Terima kasih atas ulasannya! ⭐");
+        document.getElementById("commentText").value = "";
         renderReviews();
+        renderHome();
     }
 
     function renderReviews() {
-        let all = comments.map(c => `<div class="glass" style="margin:0.5rem 0; padding:0.8rem;"><b>⭐ ${c.stars}/5</b> - ${c.username}: ${c.text}<br><small>${c.date}</small></div>`).join("");
-        document.getElementById("allReviews").innerHTML = all || "<p>Belum ada ulasan.</p>";
+        if (comments.length === 0) {
+            document.getElementById("allReviews").innerHTML = `<div class="empty-state"><i class="fas fa-star"></i><p>Belum ada ulasan. Jadi yang pertama!</p></div>`;
+            return;
+        }
+        let all = comments.slice().reverse().map(c => `
+            <div class="card" style="margin-bottom:0.8rem; padding:1rem;">
+                <div><b>⭐ ${c.stars}/5</b> - <strong>${c.username}</strong> <small style="color: var(--text-secondary);">${c.date}</small></div>
+                <p style="margin-top: 0.5rem;">${c.text}</p>
+            </div>
+        `).join("");
+        document.getElementById("allReviews").innerHTML = all;
     }
 
     function renderAccount() {
         if (!currentUser) {
             document.getElementById("authSection").innerHTML = `
-                <div class="glass" style="padding:1.5rem;"><h3>Login</h3><input id="loginUser" placeholder="Username"><input id="loginPass" type="password" placeholder="Password"><button class="btn-gold" onclick="login()">Login</button><hr><h3>Register</h3><input id="regUser" placeholder="Username"><input id="regPass" type="password" placeholder="Password"><input id="regEmail" placeholder="Email"><button class="btn-gold" onclick="register()">Daftar</button></div>`;
+                <div class="glass" style="padding: 2rem;">
+                    <h3><i class="fas fa-sign-in-alt"></i> Login</h3>
+                    <div class="form-group"><input type="text" id="loginUser" placeholder="Username" style="width:100%;"></div>
+                    <div class="form-group"><input type="password" id="loginPass" placeholder="Password" style="width:100%;"></div>
+                    <button class="btn-gold" onclick="login()"><i class="fas fa-key"></i> Login</button>
+                    <hr style="margin: 1.5rem 0;">
+                    <h3><i class="fas fa-user-plus"></i> Daftar Pelanggan Baru</h3>
+                    <div class="form-group"><input type="text" id="regUser" placeholder="Username"></div>
+                    <div class="form-group"><input type="password" id="regPass" placeholder="Password"></div>
+                    <div class="form-group"><input type="email" id="regEmail" placeholder="Email (opsional)"></div>
+                    <button class="btn-outline" onclick="register()">Daftar Sekarang</button>
+                </div>
+            `;
             document.getElementById("profileSection").style.display = "none";
             document.getElementById("adminPanel").style.display = "none";
             return;
         }
+        
         document.getElementById("authSection").innerHTML = "";
         document.getElementById("profileSection").style.display = "block";
-        document.getElementById("profileSection").innerHTML = `<div class="glass" style="padding:1.5rem;"><h3>Profil: ${currentUser.username}</h3><p>Email: ${currentUser.email || "-"}</p><button class="btn-outline" onclick="logout()">Logout</button><br><br><input id="editUsername" placeholder="Username Baru"><input id="editPassword" placeholder="Password Baru"><input id="editEmail" placeholder="Email Baru"><button class="btn-gold" onclick="editProfile()">Simpan Perubahan</button></div>`;
+        document.getElementById("profileSection").innerHTML = `
+            <div class="glass" style="padding: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                    <div><i class="fas fa-user-circle" style="font-size: 3rem; color: var(--accent);"></i></div>
+                    <div><h3>${currentUser.username}</h3><p>${currentUser.email || "Email tidak diisi"}<br><span class="badge">${currentUser.role === "owner" ? "👑 OWNER" : "👤 Pelanggan"}</span></p></div>
+                    <button class="btn-outline" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                </div>
+                <hr style="margin: 1rem 0;">
+                <h4>Edit Profil</h4>
+                <div class="form-group"><input type="text" id="editUsername" placeholder="Username Baru"></div>
+                <div class="form-group"><input type="password" id="editPassword" placeholder="Password Baru"></div>
+                <div class="form-group"><input type="email" id="editEmail" placeholder="Email Baru"></div>
+                <button class="btn-gold" onclick="editProfile()"><i class="fas fa-save"></i> Simpan Perubahan</button>
+            </div>
+        `;
+        
         if (currentUser.role === "owner") {
             document.getElementById("adminPanel").style.display = "block";
-            document.getElementById("adminPanel").innerHTML = `<div class="glass" style="padding:1.5rem;"><h3>Panel Owner</h3><button class="btn-gold" onclick="showPage('manage-products')">📦 Kelola Produk</button><button class="btn-gold" onclick="showPage('orders')">📋 Semua Pesanan</button><button class="btn-outline" onclick="toggleWebsiteStatus()">🌐 Offline/Online</button><p>Total Kunjungan: ${totalVisits}</p></div>`;
+            document.getElementById("adminPanel").innerHTML = `
+                <div class="glass" style="padding: 1.5rem;">
+                    <h3><i class="fas fa-crown"></i> Panel Owner</h3>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+                        <button class="btn-gold" onclick="showPage('manage-products')"><i class="fas fa-boxes"></i> Kelola Produk</button>
+                        <button class="btn-gold" onclick="showPage('orders')"><i class="fas fa-clipboard-list"></i> Semua Pesanan</button>
+                        <button class="btn-outline" onclick="toggleWebsiteStatus()"><i class="fas fa-globe"></i> ${websiteStatus.status === "online" ? "Set Offline" : "Set Online"}</button>
+                    </div>
+                    <hr style="margin: 1rem 0;">
+                    <p><i class="fas fa-chart-line"></i> Total Kunjungan: <strong>${totalVisits}</strong></p>
+                    <p><i class="fas fa-shopping-cart"></i> Total Pesanan: <strong>${orders.length}</strong></p>
+                    <p><i class="fas fa-box"></i> Total Produk: <strong>${products.length}</strong></p>
+                    <p><i class="fas fa-users"></i> Total Pelanggan: <strong>${users.filter(u => u.role === "customer").length}</strong></p>
+                </div>
+            `;
         } else {
             document.getElementById("adminPanel").style.display = "none";
         }
     }
 
     function login() {
-        let user = document.getElementById("loginUser").value;
+        let user = document.getElementById("loginUser").value.trim();
         let pass = document.getElementById("loginPass").value;
+        
+        if (!user || !pass) {
+            showToast("Username dan password harus diisi!", true);
+            return;
+        }
+        
         let found = users.find(u => u.username === user && u.password === pass);
         if (found) {
             currentUser = found;
-            saveData();
-            showToast(`Selamat datang, ${user}`);
+            saveAllData();
+            showToast(`Selamat datang, ${user}! ✨`);
             renderAccount();
+            renderHome();
             showPage("home");
-        } else showToast("Login gagal.");
+        } else {
+            showToast("❌ Login gagal! Username atau password salah.", true);
+        }
     }
 
     function register() {
-        let user = document.getElementById("regUser").value;
+        let user = document.getElementById("regUser").value.trim();
         let pass = document.getElementById("regPass").value;
         let email = document.getElementById("regEmail").value;
-        if (users.find(u => u.username === user)) return showToast("Username sudah ada.");
-        if (user === OWNER_USERNAME) return showToast("Username tidak tersedia.");
-        users.push({ username: user, password: pass, email: email, role: "customer" });
-        saveData();
-        showToast("Registrasi berhasil! Silakan login.");
+        
+        if (!user || !pass) {
+            showToast("Username dan password harus diisi!", true);
+            return;
+        }
+        if (user === OWNER_USERNAME) {
+            showToast("Username tidak tersedia!", true);
+            return;
+        }
+        if (users.find(u => u.username === user)) {
+            showToast("Username sudah terdaftar!", true);
+            return;
+        }
+        
+        users.push({ username: user, password: pass, email: email || "", role: "customer", createdAt: new Date().toISOString() });
+        saveAllData();
+        showToast("✅ Registrasi berhasil! Silakan login.");
+        document.getElementById("regUser").value = "";
+        document.getElementById("regPass").value = "";
+        document.getElementById("regEmail").value = "";
         renderAccount();
     }
 
     function logout() {
         currentUser = null;
         renderAccount();
+        showToast("Anda telah logout.");
         showPage("home");
     }
 
     function editProfile() {
-        let newU = document.getElementById("editUsername").value;
+        let newU = document.getElementById("editUsername").value.trim();
         let newP = document.getElementById("editPassword").value;
-        let newE = document.getElementById("editEmail").value;
-        if (newU && newU !== OWNER_USERNAME) currentUser.username = newU;
+        let newE = document.getElementById("editEmail").value.trim();
+        
+        if (newU && newU !== OWNER_USERNAME && !users.find(u => u.username === newU && u.username !== currentUser.username)) {
+            currentUser.username = newU;
+        }
         if (newP) currentUser.password = newP;
         if (newE) currentUser.email = newE;
+        
         let index = users.findIndex(u => u.username === currentUser.username);
         if (index !== -1) users[index] = currentUser;
-        saveData();
-        showToast("Profil diperbarui!");
+        saveAllData();
+        showToast("✅ Profil berhasil diperbarui!");
         renderAccount();
     }
 
     function addProduct() {
-        if (!currentUser || currentUser.role !== "owner") return showToast("Hanya owner yang bisa menambah produk.");
-        let name = document.getElementById("prodName").value;
+        if (!currentUser || currentUser.role !== "owner") {
+            showToast("Hanya owner yang bisa menambah produk!", true);
+            return;
+        }
+        let name = document.getElementById("prodName").value.trim();
         let type = document.getElementById("prodType").value;
         let price = parseInt(document.getElementById("prodPrice").value);
-        let benefits = document.getElementById("prodBenefits").value;
-        if (!name || !price) return showToast("Nama dan harga wajib diisi.");
+        let benefits = document.getElementById("prodBenefits").value.trim();
+        
+        if (!name || !price || price <= 0) {
+            showToast("Nama dan harga produk wajib diisi dengan benar!", true);
+            return;
+        }
+        
         let id = Date.now();
         products.push({ id, name, type, price, benefits });
-        saveData();
-        showToast("Produk ditambahkan!");
+        saveAllData();
+        showToast("✅ Produk berhasil ditambahkan!");
+        
+        document.getElementById("prodName").value = "";
+        document.getElementById("prodPrice").value = "";
+        document.getElementById("prodBenefits").value = "";
+        
         renderManageProducts();
         renderProducts();
         renderHome();
     }
 
     function renderManageProducts() {
-        let list = products.map(p => `<div class="card" style="margin-bottom:0.5rem; padding:0.8rem; display:flex; justify-content:space-between;"><div><b>${p.name}</b> - ${p.type} - Rp ${p.price}<br><small>${p.benefits}</small></div><div><button class="btn-outline" onclick="deleteProduct(${p.id})">Hapus</button></div></div>`).join("");
-        document.getElementById("manageProductsList").innerHTML = list || "<p>⚠️ PRODUK AWAL KOSONG - HANYA OWNER BISA MENAMBAH</p>";
+        if (products.length === 0) {
+            document.getElementById("manageProductsList").innerHTML = `<div class="empty-state"><i class="fas fa-box-open"></i><p>⚠️ PRODUK AWAL KOSONG - HANYA OWNER BISA MENAMBAH</p></div>`;
+            return;
+        }
+        
+        let list = products.map(p => `
+            <div class="card" style="margin-bottom:0.8rem; padding:1rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                    <div>
+                        <span class="badge">${p.type}</span>
+                        <h4 style="margin: 0.5rem 0;">${p.name}</h4>
+                        <div class="product-price">Rp ${p.price.toLocaleString()}</div>
+                        <small>${p.benefits.substring(0, 60)}${p.benefits.length > 60 ? '...' : ''}</small>
+                    </div>
+                    <div>
+                        <button class="btn-outline" style="margin-right: 0.5rem;" onclick="editProduct(${p.id})"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="btn-danger" onclick="deleteProduct(${p.id})"><i class="fas fa-trash"></i> Hapus</button>
+                    </div>
+                </div>
+            </div>
+        `).join("");
+        document.getElementById("manageProductsList").innerHTML = list;
     }
 
     function deleteProduct(id) {
         if (!currentUser || currentUser.role !== "owner") return;
-        products = products.filter(p => p.id !== id);
-        saveData();
-        renderManageProducts();
-        renderProducts();
-        renderHome();
+        if (confirm("Yakin ingin menghapus produk ini?")) {
+            products = products.filter(p => p.id !== id);
+            saveAllData();
+            showToast("Produk dihapus!");
+            renderManageProducts();
+            renderProducts();
+            renderHome();
+        }
+    }
+
+    function editProduct(id) {
+        let product = products.find(p => p.id === id);
+        if (product) {
+            document.getElementById("prodName").value = product.name;
+            document.getElementById("prodType").value = product.type;
+            document.getElementById("prodPrice").value = product.price;
+            document.getElementById("prodBenefits").value = product.benefits;
+            deleteProduct(id);
+            showToast("Silakan edit lalu simpan ulang.");
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
+
+    function toggleWebsiteStatus() {
+        if (currentUser?.role !== "owner") return;
+        websiteStatus.status = websiteStatus.status === "online" ? "offline" : "online";
+        saveAllData();
+        showToast(`🌐 Website sekarang ${websiteStatus.status === "online" ? "ONLINE" : "OFFLINE"}`);
+        renderAccount();
     }
 
     function toggleTheme() {
         document.body.classList.toggle("dark");
         document.body.classList.toggle("light");
+        let icon = document.querySelector(".theme-toggle i");
+        if (document.body.classList.contains("dark")) {
+            icon.className = "fas fa-moon";
+        } else {
+            icon.className = "fas fa-sun";
+        }
     }
 
-    // Init
+    // Initial render
     renderHome();
     renderProducts();
     renderReviews();
