@@ -16,27 +16,27 @@
         :root {
             --accent: #F4E883;
             --accent-dark: #D4A017;
-            --accent-glow: rgba(244, 232, 131, 0.3);
+            --accent-glow: rgba(244, 232, 131, 0.25);
             --gold-gradient: linear-gradient(135deg, #F4E883, #D4A017);
         }
 
         body.dark {
             --bg-primary: #0A0A08;
             --bg-secondary: #141412;
-            --bg-card: rgba(20, 20, 18, 0.95);
+            --bg-card: rgba(20, 20, 18, 0.96);
             --text-primary: #FFFFFF;
-            --text-secondary: #C0C0B0;
+            --text-secondary: #D0D0C0;
             --border: rgba(244, 232, 131, 0.2);
-            --glass-bg: rgba(20, 20, 18, 0.95);
+            --glass-bg: rgba(20, 20, 18, 0.92);
             --glass-border: rgba(244, 232, 131, 0.25);
-            --shadow: 0 10px 40px rgba(0,0,0,0.5);
+            --shadow: 0 12px 48px rgba(0,0,0,0.5);
             --input-bg: #2A2A20;
             --toast-bg: #1A1A14;
             --sidebar-bg: #0D0D09;
         }
 
         body.light {
-            --bg-primary: #F5F5F0;
+            --bg-primary: #F8F8F5;
             --bg-secondary: #FFFFFF;
             --bg-card: rgba(255,255,255,0.98);
             --text-primary: #0D0D09;
@@ -44,10 +44,10 @@
             --border: rgba(212, 160, 23, 0.2);
             --glass-bg: rgba(255,255,255,0.95);
             --glass-border: rgba(212, 160, 23, 0.3);
-            --shadow: 0 10px 40px rgba(0,0,0,0.1);
+            --shadow: 0 12px 48px rgba(0,0,0,0.08);
             --input-bg: #FFFFFF;
             --toast-bg: #FFFFFF;
-            --sidebar-bg: #F5F5F0;
+            --sidebar-bg: #F8F8F5;
         }
 
         body {
@@ -56,6 +56,8 @@
             color: var(--text-primary);
             transition: all 0.3s ease;
             min-height: 100vh;
+            font-size: 17px;
+            line-height: 1.5;
         }
 
         h1, h2, h3, .logo-text {
@@ -63,10 +65,11 @@
             font-weight: 600;
         }
 
-        h2 { font-size: 1.8rem; margin-bottom: 1.2rem; }
-        h3 { font-size: 1.3rem; margin-bottom: 0.8rem; }
+        h2 { font-size: 2.2rem; margin-bottom: 1.5rem; }
+        h3 { font-size: 1.6rem; margin-bottom: 1rem; }
+        h4 { font-size: 1.2rem; margin-bottom: 0.8rem; }
 
-        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-secondary); }
         ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
 
@@ -75,7 +78,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.8rem 5%;
+            padding: 1rem 5%;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -87,11 +90,11 @@
         .menu-btn {
             background: none;
             border: none;
-            font-size: 1.8rem;
+            font-size: 2rem;
             cursor: pointer;
             color: var(--accent);
-            width: 45px;
-            height: 45px;
+            width: 52px;
+            height: 52px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -100,33 +103,34 @@
         .menu-btn:hover { background: var(--accent-glow); }
 
         .logo { text-align: center; cursor: pointer; }
-        .logo-text { font-size: 1.4rem; background: var(--gold-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .logo-sub { font-size: 0.5rem; color: var(--accent); letter-spacing: 3px; }
+        .logo-text { font-size: 1.8rem; background: var(--gold-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; letter-spacing: 2px; }
+        .logo-sub { font-size: 0.65rem; color: var(--accent); letter-spacing: 4px; margin-top: 4px; }
 
         .theme-toggle {
             background: var(--bg-secondary);
             border: 1px solid var(--border);
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 48px;
+            height: 48px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.2rem;
         }
 
         /* Sidebar */
         .sidebar {
             position: fixed;
             top: 0;
-            left: -280px;
-            width: 270px;
+            left: -320px;
+            width: 300px;
             height: 100%;
             background: var(--sidebar-bg);
             border-right: 1px solid var(--glass-border);
             z-index: 1000;
             transition: left 0.3s ease;
-            padding: 1.2rem;
+            padding: 1.5rem;
             overflow-y: auto;
         }
         .sidebar.open { left: 0; }
@@ -134,33 +138,35 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.8rem;
+            margin-bottom: 1.8rem;
+            padding-bottom: 1rem;
             border-bottom: 1px solid var(--border);
         }
+        .sidebar-header h3 { font-size: 1.5rem; margin: 0; }
         .close-sidebar {
             background: none;
             border: none;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             cursor: pointer;
             color: var(--text-primary);
         }
         .sidebar-menu {
             display: flex;
             flex-direction: column;
-            gap: 0.3rem;
+            gap: 0.5rem;
         }
         .sidebar-menu button {
             background: none;
             border: none;
             color: var(--text-primary);
-            font-size: 0.9rem;
-            padding: 0.7rem 1rem;
+            font-size: 1rem;
+            padding: 0.9rem 1rem;
             text-align: left;
             cursor: pointer;
-            border-radius: 12px;
+            border-radius: 14px;
             transition: all 0.3s;
         }
+        .sidebar-menu button i { width: 28px; }
         .sidebar-menu button:hover, .sidebar-menu button.active {
             background: var(--accent);
             color: #0D0D09;
@@ -171,67 +177,74 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.6);
             z-index: 999;
             display: none;
         }
         .overlay.show { display: block; }
 
+        /* Buttons */
         .btn-gold {
             background: var(--gold-gradient);
             border: none;
             color: #0D0D09;
-            padding: 10px 22px;
+            padding: 14px 32px;
             border-radius: 50px;
             font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 1rem;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            transition: all 0.3s ease;
         }
-        .btn-gold:hover { transform: scale(1.02); box-shadow: 0 0 15px var(--accent-glow); }
+        .btn-gold:hover { transform: scale(1.02); box-shadow: 0 0 20px var(--accent-glow); }
+        
         .btn-outline {
             background: transparent;
             border: 2px solid var(--accent);
             color: var(--accent);
-            padding: 8px 18px;
+            padding: 12px 28px;
             border-radius: 50px;
             font-weight: 600;
+            font-size: 0.95rem;
             cursor: pointer;
-            font-size: 0.8rem;
+            transition: all 0.3s ease;
         }
         .btn-outline:hover { background: var(--accent); color: #0D0D09; }
+        
         .btn-danger {
             background: rgba(220, 53, 69, 0.9);
             border: none;
             color: white;
-            padding: 5px 12px;
-            border-radius: 10px;
+            padding: 8px 18px;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 0.7rem;
+            font-size: 0.8rem;
         }
         .btn-small {
             background: var(--accent);
             border: none;
             color: #0D0D09;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.8rem;
             cursor: pointer;
+            margin: 3px;
         }
 
         .container {
-            max-width: 1300px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 1.5rem 5%;
-            min-height: calc(100vh - 120px);
+            padding: 2rem 5%;
+            min-height: calc(100vh - 140px);
         }
 
         .page { display: none; animation: fadeIn 0.4s ease; }
         .page.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px);} to { opacity: 1; transform: translateY(0);} }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
 
+        /* Login */
         .login-page {
             display: flex;
             justify-content: center;
@@ -240,102 +253,109 @@
             background: var(--bg-primary);
         }
         .login-card {
-            max-width: 400px;
+            max-width: 480px;
             width: 90%;
-            padding: 2rem;
+            padding: 2.8rem;
             text-align: center;
         }
 
         .hero {
             text-align: center;
-            padding: 1.8rem;
-            margin-bottom: 1.5rem;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
         }
-        .hero h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .hero h2 { font-size: 2.2rem; margin-bottom: 0.8rem; }
+        .hero p { font-size: 1.1rem; color: var(--text-secondary); }
 
+        /* Products Grid */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2rem;
+            margin-top: 1.8rem;
         }
-        .product-card { padding: 1rem; }
-        .product-name { font-size: 1.2rem; font-weight: bold; }
+        .product-card { padding: 1.5rem; }
+        .product-name { font-size: 1.4rem; font-weight: bold; margin-bottom: 0.5rem; }
         .variant-select {
             width: 100%;
-            padding: 8px;
-            margin: 8px 0;
-            border-radius: 12px;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 14px;
             background: var(--input-bg);
             border: 1px solid var(--border);
             color: var(--text-primary);
+            font-size: 0.95rem;
         }
-        .variant-price { font-size: 1.2rem; font-weight: bold; color: var(--accent); margin: 5px 0; }
-        .stock-badge { font-size: 0.65rem; padding: 2px 8px; border-radius: 20px; background: var(--border); display: inline-block; }
+        .variant-price { font-size: 1.5rem; font-weight: bold; color: var(--accent); margin: 8px 0; }
+        .stock-badge { font-size: 0.7rem; padding: 4px 12px; border-radius: 20px; background: var(--border); display: inline-block; }
 
-        .form-group { margin-bottom: 1rem; }
-        label { font-weight: 600; margin-bottom: 0.4rem; display: block; color: var(--accent); font-size: 0.8rem; }
+        /* Forms */
+        .form-group { margin-bottom: 1.3rem; }
+        label { font-weight: 600; margin-bottom: 0.6rem; display: block; color: var(--accent); font-size: 0.9rem; }
         input, select, textarea {
             width: 100%;
-            padding: 10px 14px;
+            padding: 14px 18px;
             background: var(--input-bg);
             border: 1px solid var(--border);
-            border-radius: 14px;
+            border-radius: 16px;
             color: var(--text-primary);
-            font-size: 0.9rem;
+            font-size: 1rem;
+            transition: all 0.3s;
         }
         input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px var(--accent-glow);
+            box-shadow: 0 0 0 4px var(--accent-glow);
         }
 
         .variant-item {
             display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
+            gap: 12px;
+            margin-bottom: 12px;
             align-items: center;
         }
         .variant-item input { flex: 1; margin: 0; }
-        .variant-item .btn-danger { padding: 8px 12px; }
 
         .toast {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 30px;
+            right: 30px;
             background: var(--toast-bg);
-            border-left: 4px solid var(--accent);
-            padding: 0.8rem 1.5rem;
-            border-radius: 14px;
+            border-left: 5px solid var(--accent);
+            padding: 1rem 2rem;
+            border-radius: 18px;
             box-shadow: var(--shadow);
             z-index: 2000;
             animation: slideIn 0.3s ease;
-            font-size: 0.85rem;
+            font-size: 0.95rem;
+            font-weight: 500;
         }
         @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
         footer {
             text-align: center;
-            padding: 1rem;
+            padding: 1.8rem;
             border-top: 1px solid var(--border);
-            margin-top: 2rem;
-            font-size: 0.7rem;
+            margin-top: 2.5rem;
+            font-size: 0.85rem;
         }
         .empty-state {
             text-align: center;
-            padding: 2.5rem;
+            padding: 3rem;
             background: var(--glass-bg);
-            border-radius: 24px;
+            border-radius: 28px;
             border: 1px dashed var(--accent);
         }
+        .empty-state i { font-size: 3rem; margin-bottom: 1rem; }
+
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.2rem;
         }
-        .stat-card { text-align: center; padding: 1rem; }
-        .stat-number { font-size: 1.8rem; font-weight: bold; color: var(--accent); }
+        .stat-card { text-align: center; padding: 1.2rem; }
+        .stat-number { font-size: 2.2rem; font-weight: bold; color: var(--accent); }
 
         .modal {
             position: fixed;
@@ -343,23 +363,33 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.75);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 3000;
         }
         .modal-content {
-            max-width: 380px;
+            max-width: 420px;
             width: 90%;
-            padding: 1.5rem;
+            padding: 2rem;
             text-align: center;
+        }
+        .modal-content img { max-width: 220px; margin: 1rem auto; border-radius: 20px; }
+
+        .cart-item {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
         }
 
         @media (max-width: 768px) {
+            body { font-size: 15px; }
             .container { padding: 1rem; }
-            .hero h2 { font-size: 1.4rem; }
+            .hero h2 { font-size: 1.6rem; }
             .products-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .stat-number { font-size: 1.6rem; }
+            .btn-gold, .btn-outline { padding: 10px 20px; }
         }
     </style>
 </head>
@@ -424,7 +454,6 @@
         document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
         document.getElementById(`page-${pageId}`)?.classList.add("active");
         closeSidebar();
-        
         if (pageId === "home") renderHome();
         if (pageId === "products") renderProducts();
         if (pageId === "cart") renderCart();
@@ -434,11 +463,9 @@
         if (pageId === "manage-products") renderManageProducts();
     }
 
-    // ==================== PRODUK DENGAN VARIAN ====================
     function renderProductCard(p) {
         const isCustomer = currentUser?.role === "customer";
         const isOwner = currentUser?.role === "owner";
-        
         if (!p.variants || p.variants.length === 0) return "";
         
         let variantsHtml = `<select class="variant-select" id="variant-${p.id}" onchange="updateVariantPrice(${p.id})">`;
@@ -452,11 +479,11 @@
             <div class="card product-card">
                 <div class="product-name">${p.name}</div>
                 <div class="stock-badge" style="margin:5px 0;">${p.type || "Produk"}</div>
-                <div style="font-size:0.75rem; margin:5px 0;">${p.benefits || ""}</div>
+                <div style="font-size:0.85rem; margin:8px 0;">${p.benefits || ""}</div>
                 ${variantsHtml}
-                ${isCustomer ? `<button class="btn-outline" style="width:100%; margin-top:8px;" onclick="addToCartVariant(${p.id})"><i class="fas fa-cart-plus"></i> Tambah ke Keranjang</button>` : 
-                  (isOwner ? `<div style="margin-top:8px;"><button class="btn-small" onclick="editProduct(${p.id})"><i class="fas fa-edit"></i> Edit</button> <button class="btn-danger" onclick="deleteProduct(${p.id})"><i class="fas fa-trash"></i> Hapus</button></div>` : 
-                  `<p style="margin-top:8px; font-size:0.7rem;">Login sebagai pelanggan untuk membeli</p>`)}
+                ${isCustomer ? `<button class="btn-outline" style="width:100%; margin-top:12px;" onclick="addToCartVariant(${p.id})"><i class="fas fa-cart-plus"></i> Tambah ke Keranjang</button>` : 
+                  (isOwner ? `<div style="margin-top:12px;"><button class="btn-small" onclick="editProduct(${p.id})"><i class="fas fa-edit"></i> Edit</button> <button class="btn-danger" onclick="deleteProduct(${p.id})"><i class="fas fa-trash"></i> Hapus</button></div>` : 
+                  `<p style="margin-top:12px; font-size:0.8rem;">Login sebagai pelanggan untuk membeli</p>`)}
             </div>
         `;
     }
@@ -495,13 +522,13 @@
         if (!carts[currentUser.username]) carts[currentUser.username] = [];
         carts[currentUser.username].push(cartItem);
         saveAll();
-        showToast(`✅ ${product.name} - ${variant.name} ditambahkan ke keranjang!`);
+        showToast(`✅ ${product.name} - ${variant.name} ditambahkan!`);
         renderCart();
     }
 
     function renderHome() {
         let avg = ratings.length ? (ratings.reduce((a,b)=>a+b.stars,0)/ratings.length).toFixed(1) : 0;
-        let recent = comments.slice(-3).map(c => `<div style="margin:5px 0; padding:5px; border-left: 3px solid var(--accent);"><b>⭐ ${c.stars}/5</b> - ${c.username}: ${c.text}</div>`).join("");
+        let recent = comments.slice(-3).map(c => `<div style="margin:8px 0; padding:8px; border-left: 4px solid var(--accent);"><b>⭐ ${c.stars}/5</b> - ${c.username}: ${c.text}</div>`).join("");
         document.getElementById("recentComments") && (document.getElementById("recentComments").innerHTML = recent || "<p>Belum ada ulasan.</p>");
         
         let stats = getStats();
@@ -543,13 +570,13 @@
         cart.forEach((item, idx) => {
             total += item.variantPrice;
             itemsHtml += `
-                <div style="display:flex; justify-content:space-between; padding:10px; border-bottom:1px solid var(--border);">
+                <div class="cart-item" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
                     <div><b>${item.productName}</b><br><small>${item.variantName}</small></div>
-                    <div>Rp ${item.variantPrice.toLocaleString()} <button class="btn-danger" style="margin-left:10px;" onclick="removeFromCart(${idx})"><i class="fas fa-trash"></i></button></div>
+                    <div>Rp ${item.variantPrice.toLocaleString()} <button class="btn-danger" style="margin-left:12px;" onclick="removeFromCart(${idx})"><i class="fas fa-trash"></i> Hapus</button></div>
                 </div>
             `;
         });
-        itemsHtml += `<div style="display:flex; justify-content:space-between; padding:10px; font-weight:bold; border-top:2px solid var(--accent);"><span>Total</span><span>Rp ${total.toLocaleString()}</span></div>`;
+        itemsHtml += `<div style="display:flex; justify-content:space-between; padding:1rem; font-weight:bold; font-size:1.2rem; border-top:2px solid var(--accent);"><span>Total</span><span>Rp ${total.toLocaleString()}</span></div>`;
         
         document.getElementById("cartItems") && (document.getElementById("cartItems").innerHTML = itemsHtml);
         document.getElementById("checkoutBtn") && (document.getElementById("checkoutBtn").innerHTML = `<button class="btn-gold" onclick="showPaymentModal(${total})"><i class="fas fa-credit-card"></i> Checkout & Bayar</button>`);
@@ -566,14 +593,12 @@
     function showPaymentModal(total) {
         let cart = carts[currentUser.username] || [];
         if (cart.length === 0) return;
-        
         let items = cart.map(item => `${item.productName} (${item.variantName}) - Rp ${item.variantPrice.toLocaleString()}`).join("\n");
-        
         let modalHtml = `
             <div class="modal" id="paymentModal">
                 <div class="modal-content glass">
                     <h3>💳 QRIS Payment</h3>
-                    <img src="${QRIS_LINK}" alt="QRIS" style="max-width: 180px; margin: 10px auto; border-radius: 16px;">
+                    <img src="${QRIS_LINK}" alt="QRIS">
                     <p><strong>Total: Rp ${total.toLocaleString()}</strong></p>
                     <button class="btn-gold" onclick="confirmPaymentAndWA(${total}, \`${items.replace(/`/g, '\\`')}\`)"><i class="fab fa-whatsapp"></i> Konfirmasi via WA</button>
                     <button class="btn-outline" onclick="closeModal()">Tutup</button>
@@ -583,36 +608,18 @@
         document.body.insertAdjacentHTML("beforeend", modalHtml);
     }
 
-    function closeModal() {
-        document.getElementById("paymentModal")?.remove();
-    }
+    function closeModal() { document.getElementById("paymentModal")?.remove(); }
 
     function confirmPaymentAndWA(total, items) {
         let cart = carts[currentUser.username] || [];
         if (cart.length === 0) return;
-        
         let orderId = Date.now();
-        let orderItems = cart.map(item => ({
-            productName: item.productName,
-            variantName: item.variantName,
-            price: item.variantPrice
-        }));
-        
-        orders.push({
-            id: orderId,
-            username: currentUser.username,
-            items: orderItems,
-            total: total,
-            status: "Menunggu Konfirmasi",
-            date: new Date().toLocaleString('id-ID')
-        });
-        
+        let orderItems = cart.map(item => ({ productName: item.productName, variantName: item.variantName, price: item.variantPrice }));
+        orders.push({ id: orderId, username: currentUser.username, items: orderItems, total: total, status: "Menunggu Konfirmasi", date: new Date().toLocaleString('id-ID') });
         carts[currentUser.username] = [];
         saveAll();
-        
         let waMsg = `*KONFIRMASI PEMBAYARAN DYNAN HOSTING STORE*\n\nHalo Admin, saya sudah melakukan pembayaran.\n\nDetail Pesanan:\n${items}\n\nTotal: Rp ${total.toLocaleString()}\nTanggal: ${new Date().toLocaleString('id-ID')}\nPelanggan: ${currentUser.username}\n\n*Bukti transfer terlampir.*`;
         window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMsg)}`, '_blank');
-        
         showToast("Pesanan dibuat! Kirim bukti transfer via WA.");
         closeModal();
         renderCart();
@@ -628,15 +635,15 @@
             return;
         }
         let list = userOrders.map(o => `
-            <div class="card" style="margin-bottom:10px; padding:12px;">
-                <div style="display:flex; justify-content:space-between;">
+            <div class="card" style="margin-bottom:1rem; padding:1.2rem;">
+                <div style="display:flex; justify-content:space-between; flex-wrap:wrap;">
                     <div><b>#${o.id}</b><br><small>${o.date}</small></div>
                     <div><span class="stock-badge" style="background:${o.status === 'Selesai' ? '#5cb85c' : '#f0ad4e'}">${o.status}</span></div>
                 </div>
-                <hr style="margin:8px 0;">
+                <hr style="margin:10px 0;">
                 <div>${o.items.map(i => `📦 ${i.productName} (${i.variantName}) - Rp ${i.price.toLocaleString()}`).join('<br>')}</div>
-                <div style="margin-top:8px;"><strong>Total: Rp ${o.total.toLocaleString()}</strong></div>
-                ${currentUser.role === "owner" && o.status === "Menunggu Konfirmasi" ? `<button class="btn-outline" style="margin-top:8px;" onclick="confirmOrder(${o.id})">✅ Konfirmasi Selesai</button>` : ""}
+                <div style="margin-top:10px;"><strong>Total: Rp ${o.total.toLocaleString()}</strong></div>
+                ${currentUser.role === "owner" && o.status === "Menunggu Konfirmasi" ? `<button class="btn-outline" style="margin-top:10px;" onclick="confirmOrder(${o.id})">✅ Konfirmasi Selesai</button>` : ""}
             </div>
         `).join("");
         document.getElementById("ordersList") && (document.getElementById("ordersList").innerHTML = list);
@@ -644,19 +651,11 @@
 
     function confirmOrder(orderId) {
         let order = orders.find(o => o.id == orderId);
-        if (order) {
-            order.status = "Selesai";
-            saveAll();
-            showToast("Pesanan dikonfirmasi selesai!");
-            renderOrders();
-        }
+        if (order) { order.status = "Selesai"; saveAll(); showToast("Pesanan dikonfirmasi selesai!"); renderOrders(); }
     }
 
     function submitReview() {
-        if (!currentUser || currentUser.role !== "customer") {
-            showToast("Login sebagai pelanggan!", true);
-            return;
-        }
+        if (!currentUser || currentUser.role !== "customer") { showToast("Login sebagai pelanggan!", true); return; }
         let stars = parseInt(document.getElementById("ratingStars")?.value || 5);
         let text = document.getElementById("commentText")?.value.trim();
         if (!text) { showToast("Tulis komentar!", true); return; }
@@ -664,7 +663,7 @@
         comments.push({ username: currentUser.username, stars: stars, text: text, date: new Date().toLocaleString() });
         saveAll();
         showToast("Terima kasih atas ulasannya!");
-        document.getElementById("commentText") && (document.getElementById("commentText").value = "");
+        if (document.getElementById("commentText")) document.getElementById("commentText").value = "";
         renderReviews();
         renderHome();
     }
@@ -674,7 +673,7 @@
             document.getElementById("allReviews") && (document.getElementById("allReviews").innerHTML = `<div class="empty-state">Belum ada ulasan.</div>`);
             return;
         }
-        let all = comments.slice().reverse().map(c => `<div class="card" style="margin-bottom:8px; padding:12px;"><b>⭐ ${c.stars}/5</b> - <strong>${c.username}</strong> <small>${c.date}</small><p style="margin-top:5px;">${c.text}</p></div>`).join("");
+        let all = comments.slice().reverse().map(c => `<div class="card" style="margin-bottom:1rem; padding:1rem;"><b>⭐ ${c.stars}/5</b> - <strong>${c.username}</strong> <small>${c.date}</small><p style="margin-top:8px;">${c.text}</p></div>`).join("");
         document.getElementById("allReviews") && (document.getElementById("allReviews").innerHTML = all);
     }
 
@@ -692,26 +691,25 @@
         }
         const isOwner = currentUser.role === "owner";
         document.getElementById("profileSection") && (document.getElementById("profileSection").innerHTML = `
-            <div class="glass" style="padding:1.2rem;">
-                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
-                    <div><i class="fas fa-user-circle" style="font-size:2.5rem; color:var(--accent);"></i></div>
+            <div class="glass" style="padding:1.5rem;">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+                    <div><i class="fas fa-user-circle" style="font-size:3.5rem; color:var(--accent);"></i></div>
                     <div><h3>${currentUser.username}</h3><p>${currentUser.email || "-"}<br><span class="stock-badge">${isOwner ? "👑 OWNER" : "👤 Pelanggan"}</span></p></div>
                     <button class="btn-outline" onclick="logout()">Logout</button>
                 </div>
-                <hr style="margin:12px 0;">
+                <hr style="margin:1.2rem 0;">
                 <h4>Edit Profil</h4>
-                <input type="text" id="editUsername" placeholder="Username Baru" style="width:100%; margin-bottom:8px;">
-                <input type="password" id="editPassword" placeholder="Password Baru" style="width:100%; margin-bottom:8px;">
-                <input type="email" id="editEmail" placeholder="Email Baru" style="width:100%; margin-bottom:8px;">
+                <input type="text" id="editUsername" placeholder="Username Baru" style="width:100%; margin-bottom:10px;">
+                <input type="password" id="editPassword" placeholder="Password Baru" style="width:100%; margin-bottom:10px;">
+                <input type="email" id="editEmail" placeholder="Email Baru" style="width:100%; margin-bottom:10px;">
                 <button class="btn-gold" onclick="editProfile()">Simpan Perubahan</button>
             </div>
         `);
-        
         if (isOwner) {
             document.getElementById("adminPanel") && (document.getElementById("adminPanel").innerHTML = `
-                <div class="glass" style="padding:1.2rem; margin-top:1.2rem;">
+                <div class="glass" style="padding:1.5rem; margin-top:1.5rem;">
                     <h3><i class="fas fa-crown"></i> Panel Owner</h3>
-                    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+                    <div style="display:flex; gap:15px; flex-wrap:wrap; margin-top:15px;">
                         <button class="btn-gold" onclick="showPage('manage-products')"><i class="fas fa-boxes"></i> Kelola Produk</button>
                         <button class="btn-gold" onclick="showPage('orders')"><i class="fas fa-clipboard-list"></i> Semua Pesanan</button>
                     </div>
@@ -725,13 +723,8 @@
         let pass = document.getElementById("loginPass")?.value;
         if (!user || !pass) { showToast("Isi username & password!", true); return; }
         let found = users.find(u => u.username === user && u.password === pass);
-        if (found) {
-            currentUser = found;
-            showToast(`Selamat datang, ${user}! ✨`);
-            renderApp();
-        } else {
-            showToast("Login gagal! Username/password salah.", true);
-        }
+        if (found) { currentUser = found; showToast(`Selamat datang, ${user}! ✨`); renderApp(); }
+        else showToast("Login gagal!", true);
     }
 
     function register() {
@@ -747,11 +740,7 @@
         renderApp();
     }
 
-    function logout() {
-        currentUser = null;
-        renderApp();
-        showToast("Anda telah logout.");
-    }
+    function logout() { currentUser = null; renderApp(); showToast("Anda telah logout."); }
 
     function editProfile() {
         let newU = document.getElementById("editUsername")?.value.trim();
@@ -774,89 +763,60 @@
         renderApp();
     }
 
-    // ==================== MANAGE PRODUCTS DENGAN VARIAN ====================
     let variantList = [];
-
     function addVariantField() {
         let container = document.getElementById("variantsContainer");
         let idx = Date.now();
         let div = document.createElement("div");
         div.className = "variant-item";
         div.id = `variant-${idx}`;
-        div.innerHTML = `
-            <input type="text" placeholder="Nama varian (contoh: 2GB RAM)" class="variant-name">
-            <input type="number" placeholder="Harga" class="variant-price-input">
-            <button class="btn-danger" onclick="removeVariantField('variant-${idx}')"><i class="fas fa-times"></i></button>
-        `;
+        div.innerHTML = `<input type="text" placeholder="Nama varian (contoh: 2GB RAM)" class="variant-name"><input type="number" placeholder="Harga" class="variant-price-input"><button class="btn-danger" onclick="removeVariantField('variant-${idx}')"><i class="fas fa-times"></i> Hapus</button>`;
         container.appendChild(div);
     }
-
-    function removeVariantField(id) {
-        document.getElementById(id)?.remove();
-    }
-
+    function removeVariantField(id) { document.getElementById(id)?.remove(); }
     function getVariantsFromForm() {
         let variants = [];
         document.querySelectorAll(".variant-item").forEach(item => {
             let name = item.querySelector(".variant-name")?.value.trim();
             let price = parseInt(item.querySelector(".variant-price-input")?.value);
-            if (name && price > 0) {
-                variants.push({ name, price });
-            }
+            if (name && price > 0) variants.push({ name, price });
         });
         return variants;
     }
-
     function addProduct() {
         let name = document.getElementById("prodName")?.value.trim();
         let type = document.getElementById("prodType")?.value.trim();
         let benefits = document.getElementById("prodBenefits")?.value.trim();
         let variants = getVariantsFromForm();
-        
         if (!name) { showToast("Nama produk wajib diisi!", true); return; }
         if (variants.length === 0) { showToast("Minimal 1 varian!", true); return; }
-        
         let id = Date.now();
         products.push({ id, name, type: type || "Produk", benefits: benefits || "", variants });
         saveAll();
         showToast("✅ Produk berhasil ditambahkan!");
-        
         document.getElementById("prodName").value = "";
         document.getElementById("prodType").value = "";
         document.getElementById("prodBenefits").value = "";
         document.getElementById("variantsContainer").innerHTML = "";
-        variantList = [];
-        
         renderManageProducts();
         renderProducts();
         renderHome();
     }
-
     function renderManageProducts() {
         if (products.length === 0) {
             document.getElementById("manageProductsList") && (document.getElementById("manageProductsList").innerHTML = `<div class="empty-state">⚠️ PRODUK KOSONG - TAMBAH PRODUK DENGAN VARIAN</div>`);
             return;
         }
         let list = products.map(p => `
-            <div class="card" style="margin-bottom:10px; padding:12px;">
+            <div class="card" style="margin-bottom:1rem; padding:1rem;">
                 <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
-                    <div>
-                        <h4>${p.name}</h4>
-                        <div class="stock-badge">${p.type}</div>
-                        <div style="margin-top:5px;">
-                            ${p.variants.map(v => `<span class="stock-badge" style="margin-right:5px;">${v.name} - Rp ${v.price.toLocaleString()}</span>`).join('')}
-                        </div>
-                    </div>
-                    <div>
-                        <button class="btn-small" onclick="editProduct(${p.id})"><i class="fas fa-edit"></i> Edit</button>
-                        <button class="btn-danger" onclick="deleteProduct(${p.id})"><i class="fas fa-trash"></i> Hapus</button>
-                    </div>
+                    <div><h4>${p.name}</h4><div class="stock-badge">${p.type}</div><div style="margin-top:8px;">${p.variants.map(v => `<span class="stock-badge" style="margin-right:5px;">${v.name} - Rp ${v.price.toLocaleString()}</span>`).join('')}</div></div>
+                    <div><button class="btn-small" onclick="editProduct(${p.id})"><i class="fas fa-edit"></i> Edit</button> <button class="btn-danger" onclick="deleteProduct(${p.id})"><i class="fas fa-trash"></i> Hapus</button></div>
                 </div>
             </div>
         `).join("");
         document.getElementById("manageProductsList") && (document.getElementById("manageProductsList").innerHTML = list);
     }
-
     function editProduct(id) {
         let product = products.find(p => p.id === id);
         if (product) {
@@ -870,11 +830,7 @@
                 let div = document.createElement("div");
                 div.className = "variant-item";
                 div.id = `variant-${idx}`;
-                div.innerHTML = `
-                    <input type="text" placeholder="Nama varian" class="variant-name" value="${v.name.replace(/"/g, '&quot;')}">
-                    <input type="number" placeholder="Harga" class="variant-price-input" value="${v.price}">
-                    <button class="btn-danger" onclick="removeVariantField('variant-${idx}')"><i class="fas fa-times"></i></button>
-                `;
+                div.innerHTML = `<input type="text" placeholder="Nama varian" class="variant-name" value="${v.name.replace(/"/g, '&quot;')}"><input type="number" placeholder="Harga" class="variant-price-input" value="${v.price}"><button class="btn-danger" onclick="removeVariantField('variant-${idx}')"><i class="fas fa-times"></i> Hapus</button>`;
                 container.appendChild(div);
             });
             deleteProduct(id);
@@ -882,7 +838,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     }
-
     function deleteProduct(id) {
         if (confirm("Yakin hapus produk ini?")) {
             products = products.filter(p => p.id !== id);
@@ -895,10 +850,7 @@
         }
     }
 
-    function toggleTheme() {
-        document.body.classList.toggle("dark");
-        document.body.classList.toggle("light");
-    }
+    function toggleTheme() { document.body.classList.toggle("dark"); document.body.classList.toggle("light"); }
 
     function renderApp() {
         const app = document.getElementById("app");
@@ -906,16 +858,12 @@
             app.innerHTML = `
                 <div class="login-page">
                     <div class="login-card glass">
-                        <div style="margin-bottom:1rem;">
-                            <div class="logo-text" style="font-size:2rem;">DYNAN</div>
-                            <div class="logo-sub">HOSTING STORE</div>
-                            <div style="width:60px; height:2px; background:var(--accent); margin:0.8rem auto;"></div>
-                        </div>
-                        <h3>Welcome Back</h3>
+                        <div style="margin-bottom:1.2rem;"><div class="logo-text" style="font-size:2.2rem;">DYNAN</div><div class="logo-sub">HOSTING STORE</div><div style="width:80px; height:2px; background:var(--accent); margin:1rem auto;"></div></div>
+                        <h3 style="margin-bottom:1rem;">Welcome Back</h3>
                         <div class="form-group"><input type="text" id="loginUser" placeholder="Username"></div>
                         <div class="form-group"><input type="password" id="loginPass" placeholder="Password"></div>
                         <button class="btn-gold" onclick="login()" style="width:100%; justify-content:center;"><i class="fas fa-key"></i> Login</button>
-                        <hr style="margin:1rem 0;">
+                        <hr style="margin:1.2rem 0;">
                         <h4>Daftar Baru</h4>
                         <div class="form-group"><input type="text" id="regUser" placeholder="Username"></div>
                         <div class="form-group"><input type="password" id="regPass" placeholder="Password"></div>
@@ -931,17 +879,11 @@
         app.innerHTML = `
             <div class="navbar">
                 <button class="menu-btn" onclick="openSidebar()"><i class="fas fa-bars"></i></button>
-                <div class="logo" onclick="showPage('home')">
-                    <div class="logo-text">DYNAN HOSTING STORE</div>
-                    <div class="logo-sub">PREMIUM SOLUTIONS</div>
-                </div>
+                <div class="logo" onclick="showPage('home')"><div class="logo-text">DYNAN HOSTING STORE</div><div class="logo-sub">PREMIUM SOLUTIONS</div></div>
                 <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
             </div>
             <div class="sidebar" id="sidebar">
-                <div class="sidebar-header">
-                    <h3>Menu</h3>
-                    <button class="close-sidebar" onclick="closeSidebar()"><i class="fas fa-times"></i></button>
-                </div>
+                <div class="sidebar-header"><h3>Menu</h3><button class="close-sidebar" onclick="closeSidebar()"><i class="fas fa-times"></i></button></div>
                 <div class="sidebar-menu">
                     <button onclick="showPage('home')"><i class="fas fa-home"></i> Beranda</button>
                     <button onclick="showPage('products')"><i class="fas fa-box"></i> Produk</button>
@@ -956,43 +898,22 @@
             <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
             <div class="container">
                 <div id="page-home" class="page active">
-                    <div class="hero glass">
-                        <h2>✨ Selamat Datang, ${currentUser.username}!</h2>
-                        <p>Exclusive Hosting Solutions</p>
-                        <button class="btn-gold" onclick="window.open('${MAPS_LINK}', '_blank')"><i class="fas fa-map-marker-alt"></i> Lokasi Toko</button>
-                    </div>
-                    <div class="glass" style="padding:1rem; margin-bottom:1rem;">
-                        <div id="statsContainer"></div>
-                    </div>
-                    <div class="glass" style="padding:1rem; margin-bottom:1rem; text-align:center;">
-                        <h3>⭐ Rating: <span id="avgRating">0</span>/5</h3>
-                        <div id="recentComments"></div>
-                    </div>
+                    <div class="hero glass"><h2>✨ Selamat Datang, ${currentUser.username}!</h2><p>Exclusive Hosting Solutions</p><button class="btn-gold" onclick="window.open('${MAPS_LINK}', '_blank')"><i class="fas fa-map-marker-alt"></i> Lokasi Toko</button></div>
+                    <div class="glass" style="padding:1.2rem; margin-bottom:1.5rem;"><div id="statsContainer"></div></div>
+                    <div class="glass" style="padding:1.2rem; margin-bottom:1.5rem; text-align:center;"><h3>⭐ Rating: <span id="avgRating">0</span>/5</h3><div id="recentComments"></div></div>
                     <div><h3>🔥 Produk Unggulan</h3><div id="featuredProducts" class="products-grid"></div></div>
                 </div>
                 <div id="page-products" class="page"><h2>📦 Semua Produk</h2><div id="allProductsList" class="products-grid"></div></div>
                 <div id="page-cart" class="page"><h2>🛒 Keranjang</h2><div id="cartItems" class="glass" style="padding:1rem;"></div><div id="checkoutBtn" style="margin-top:1rem;"></div></div>
                 <div id="page-orders" class="page"><h2>📋 Pesanan Saya</h2><div id="ordersList"></div></div>
-                <div id="page-reviews" class="page">
-                    <h2>⭐ Ulasan</h2>
-                    ${currentUser.role === "customer" ? `
-                    <div class="glass" style="padding:1rem; margin-bottom:1rem;">
-                        <h3>Beri Ulasan</h3>
-                        <select id="ratingStars"><option value="5">⭐⭐⭐⭐⭐ (5)</option><option value="4">⭐⭐⭐⭐ (4)</option><option value="3">⭐⭐⭐ (3)</option><option value="2">⭐⭐ (2)</option><option value="1">⭐ (1)</option></select>
-                        <textarea id="commentText" rows="3" placeholder="Komentar..." style="margin-top:10px;"></textarea>
-                        <button class="btn-gold" style="margin-top:10px;" onclick="submitReview()">Kirim</button>
-                    </div>
-                    ` : `<div class="glass" style="padding:1rem; text-align:center;">Login sebagai pelanggan untuk memberi ulasan</div>`}
-                    <div id="allReviews"></div>
-                </div>
+                <div id="page-reviews" class="page"><h2>⭐ Ulasan</h2>${currentUser.role === "customer" ? `<div class="glass" style="padding:1.2rem; margin-bottom:1.5rem;"><h3>Beri Ulasan</h3><select id="ratingStars" style="width:auto; padding:10px;"><option value="5">⭐⭐⭐⭐⭐ (5)</option><option value="4">⭐⭐⭐⭐ (4)</option><option value="3">⭐⭐⭐ (3)</option><option value="2">⭐⭐ (2)</option><option value="1">⭐ (1)</option></select><textarea id="commentText" rows="3" placeholder="Komentar..." style="margin-top:10px;"></textarea><button class="btn-gold" style="margin-top:10px;" onclick="submitReview()">Kirim</button></div>` : `<div class="glass" style="padding:1.2rem; text-align:center;">Login sebagai pelanggan untuk memberi ulasan</div>`}<div id="allReviews"></div></div>
                 <div id="page-account" class="page"><h2>👤 Akun Saya</h2><div id="profileSection"></div><div id="adminPanel"></div></div>
-                <div id="page-manage-products" class="page">
-                    <h2>🔧 Kelola Produk <span style="font-size:0.7rem;">(Owner)</span></h2>
-                    <div class="glass" style="padding:1rem; margin-bottom:1rem;">
+                <div id="page-manage-products" class="page"><h2>🔧 Kelola Produk <span style="font-size:0.8rem;">(Owner)</span></h2>
+                    <div class="glass" style="padding:1.2rem; margin-bottom:1.5rem;">
                         <h3><i class="fas fa-plus-circle"></i> Tambah Produk dengan Varian</h3>
                         <div class="form-group"><label>Nama Produk</label><input type="text" id="prodName" placeholder="Contoh: Panel Pterodactyl"></div>
                         <div class="form-group"><label>Jenis Produk</label><input type="text" id="prodType" placeholder="Contoh: Hosting VPS"></div>
-                        <div class="form-group"><label>Benefits</label><textarea id="prodBenefits" rows="2" placeholder="✅ Support 24/7, ✅ SSD Cepat"></textarea></div>
+                        <div class="form-group"><label>Benefits</label><textarea id="prodBenefits" rows="3" placeholder="✅ Support 24/7, ✅ SSD Cepat"></textarea></div>
                         <label>Daftar Varian (Nama & Harga)</label>
                         <div id="variantsContainer"></div>
                         <button class="btn-outline" style="margin:10px 0;" onclick="addVariantField()"><i class="fas fa-plus"></i> + Tambah Varian</button>
@@ -1001,29 +922,12 @@
                     <h3>📋 Daftar Produk</h3>
                     <div id="manageProductsList"></div>
                 </div>
-                <div id="page-contact" class="page">
-                    <h2>📞 Kontak</h2>
-                    <div class="glass" style="padding:1.5rem; text-align:center;">
-                        <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;">
-                            <button class="btn-gold" onclick="window.open('https://wa.me/${WHATSAPP_NUMBER}', '_blank')"><i class="fab fa-whatsapp"></i> WhatsApp</button>
-                            <button class="btn-gold" onclick="window.open('https://instagram.com/nannhtgl', '_blank')"><i class="fab fa-instagram"></i> Instagram</button>
-                            <button class="btn-gold" onclick="window.open('https://t.me/dynaniniwe', '_blank')"><i class="fab fa-telegram"></i> Telegram</button>
-                        </div>
-                        <hr style="margin:1rem 0;">
-                        <button class="btn-outline" onclick="window.open('${MAPS_LINK}', '_blank')">📍 Google Maps</button>
-                    </div>
-                </div>
+                <div id="page-contact" class="page"><h2>📞 Kontak</h2><div class="glass" style="padding:1.5rem; text-align:center;"><div style="display:flex; gap:1.2rem; flex-wrap:wrap; justify-content:center;"><button class="btn-gold" onclick="window.open('https://wa.me/${WHATSAPP_NUMBER}', '_blank')"><i class="fab fa-whatsapp"></i> WhatsApp</button><button class="btn-gold" onclick="window.open('https://instagram.com/nannhtgl', '_blank')"><i class="fab fa-instagram"></i> Instagram</button><button class="btn-gold" onclick="window.open('https://t.me/dynaniniwe', '_blank')"><i class="fab fa-telegram"></i> Telegram</button></div><hr style="margin:1rem 0;"><button class="btn-outline" onclick="window.open('${MAPS_LINK}', '_blank')">📍 Google Maps</button></div></div>
             </div>
             <footer><p>© 2025 DYNAN HOSTING STORE | Total Kunjungan: ${totalVisits}</p></footer>
         `;
-        
         setTimeout(() => {
-            renderHome();
-            renderProducts();
-            renderCart();
-            renderOrders();
-            renderReviews();
-            renderAccount();
+            renderHome(); renderProducts(); renderCart(); renderOrders(); renderReviews(); renderAccount();
             if (isOwner) renderManageProducts();
         }, 50);
     }
